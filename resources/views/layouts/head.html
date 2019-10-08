@@ -1,0 +1,55 @@
+{{define "header"}}
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="shortcut icon" href="public/img/favicon.ico" type="image/x-icon">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="Keywords" content="{{ .Config.HtmlKeywords }}" />
+    <meta name="description" content="{{ .Config.HtmlDescription }}" />
+    <title>{{ .Title }} - {{ .Config.SiteName }}</title>
+    <style>:root{--primary: {{ .Config.ThemeColor }}}</style>
+    <link rel="stylesheet" href="/public/css/prism.css">
+    <link rel="stylesheet" href="/public/css/app.css">
+    <script src="/public/js/marked.min.js"></script>
+    <script>
+        function obj2StrParams(obj,firstStr = '?') {
+            let params = firstStr;
+            for (let p in obj){
+                let isFirst = ( params === '?');
+                let qz = isFirst ? '' : (params === '&' ? '' : '&');
+                params += (qz + p + '=' + obj[p] )
+            }
+            return params
+        }
+        function currentUrlToParams(key = null) {
+            let paramsUrl = (window.location.href).split('?');
+
+            if(paramsUrl.length<2)return key ? null : {};
+            let paramsArr = paramsUrl[1].split('&');
+            let paramsData = {}
+
+            paramsArr.forEach(r=>{
+                let data = r.split('=')
+                paramsData[data[0]] = data[1]
+            })
+            if(key)return paramsData.hasOwnProperty(key) ? paramsData[key] : null;
+            return paramsData;
+        }
+    </script>
+</head>
+<body class="theme{{ .Config.ThemeColor }}">
+    <nav class="head">
+        <div class="container head-content">
+            <div class="logo">{{ .Config.SiteName }}</div>
+            <div class="nav">
+                <a href="/">Blog</a>
+                <a href="/categories">Categories</a>
+                <a href="/works">Works</a>
+                <a href="/about">About</a>
+            </div>
+        </div>
+    </nav>
+    <div class="post-warp">
+{{ end }}

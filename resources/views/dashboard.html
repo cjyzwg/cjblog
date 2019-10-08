@@ -1,0 +1,45 @@
+{{template "header" .}}
+    <div class="sub-title">- Dashboard -</div>
+    <p>Search：</p>
+    <div class="item-content">
+        <div class="search-box">
+            <input id="search-input" class="search-input" type="text">
+            <img onclick="searchArticle()" class="search-icon" src="/public/img/search.svg" alt="">
+        </div>
+    </div>
+    <p>Theme：</p>
+    <div class="item-content">
+        <ul class="colors">
+            {{range $index, $color := .Config.ThemeOption }}
+                <li onclick="selectColor('{{ $index }}')" class="{{ if eq $color $.Config.ThemeColor }}active{{end}}" style="background-color: {{ $color }}"></li>
+            {{end}}
+        </ul>
+    </div>
+    <p>Action：</p>
+    <div class="item-content">
+        <div class="action">
+            <a href="{{ .Config.DashboardEntrance }}?action=updateArticle">更新文章</a>
+        </div>
+    </div>
+    {{ if .Data.msg }}
+        <div id="action-msg" class="action-msg">
+            {{range $msg := .Data.msg }}
+                <span>{{ $msg }}</span>
+            {{ end }}
+            <span class="close" onclick="document.getElementById('action-msg').remove()">x</span>
+        </div>
+    {{ end }}
+    <span class="action-tip">提示：更新文章会执行git pull命令，和你的仓库网络有关，等待时间可能会稍长。</span>
+    <script>
+        function selectColor(index) {
+            window.location.href = '{{ .Config.DashboardEntrance }}?theme=' + index
+        }
+        function searchArticle() {
+            var searchKey = document.getElementById('search-input').value;
+            searchKey   =   searchKey.replace(/^\s+|\s+$/g,"")
+            if("" === searchKey){return}
+
+            window.location.href = '/?search=' + searchKey
+        }
+    </script>
+{{template "footer" .}}

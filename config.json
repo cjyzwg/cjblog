@@ -1,0 +1,16 @@
+{
+  "port": 8081,
+  "pageSize": 4,
+  "descriptionLen": 200,
+  "author": "Chensir",
+  "webHookSecret": "cjyzwg",
+  "timeLayout": "2006.01.02 15:04",
+  "siteName": "Chensir's Personal Blog",
+  "documentPath": "resources/blog_docs",
+  "htmlKeywords": "forest blog,Golang,前端",
+  "htmlDescription": "Chensir's Personal blog",
+  "categoryListFileNumber": 6,
+  "themeColor": "#9c27b0",
+  "dashboardEntrance": "/admin",
+  "themeOption": ["#673ab7","#f44336","#9c27b0","#2196f3","#607d8b","#795548"]
+}
