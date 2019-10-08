@@ -1,5 +1,5 @@
 ### mac下安装sshpass
->$ brew install https://raw.githubusercontent.com/kadwanev/bigboybrew/master/Library/Formula/sshpass.rb  
+>$ brew install https://raw.githubusercontent.com/kadwanev/bigboybrew/master/Library/Formula/sshpass.rb    
 
 >$ cd /usr/local/bin  
 
