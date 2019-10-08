@@ -45,8 +45,8 @@ WantedBy=multi-user.target
 ```
 >$ systemctl start blog.service即可  
 
-#### 重新加载配置文件
+##### 重新加载配置文件
 >$ sudo systemctl daemon-reload
 
-#### 重启相关服务
+##### 重启相关服务
 >$ sudo systemctl restart foobar
