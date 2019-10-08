@@ -43,6 +43,6 @@ func init() {
 	Cfg.AppName = "ForestBlog"
 	Cfg.Version = 2.2
 	Cfg.GitHookUrl = "/api/git_push_hook"
-	Cfg.AppRepository = "https://github.com/xusenlin/ForestBlog"
+	Cfg.AppRepository = "https://github.com/cjyzwg/forestblog"
 
 }
