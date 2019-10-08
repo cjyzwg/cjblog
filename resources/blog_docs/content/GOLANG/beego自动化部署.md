@@ -30,11 +30,10 @@ systemctl restart blog.service
 
 #### 服务器使用systemd 部署
 >$ nano /etc/systemd/system/dd-bi-go.service
-```php
+```shell
 [Unit]
 Description=blog
 After=blog.service
-
 [Service]
 Type=simple
 User=root
@@ -42,7 +41,6 @@ Group=root
 WorkingDirectory=/var/www/html/blog
 ExecStart=/var/www/html/blog/blog
 Restart=always
-
 [Install]
 WantedBy=multi-user.target
 ```
