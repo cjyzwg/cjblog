@@ -27,7 +27,6 @@ tar -xzvf blog.tar.gz
 #remove conf of dev
 systemctl restart blog.service
 ```
-
 #### 服务器使用systemd 部署
 >$ nano /etc/systemd/system/dd-bi-go.service
 ```php
@@ -44,12 +43,10 @@ Restart=always
 [Install]
 WantedBy=multi-user.target
 ```
+>$ systemctl start blog.service即可  
 
->$ systemctl start blog.service即可
-
-
-#####重新加载配置文件
+##### 重新加载配置文件
 >$ sudo systemctl daemon-reload
 
-#####重启相关服务
+##### 重启相关服务
 >$ sudo systemctl restart foobar
