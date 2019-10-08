@@ -15,3 +15,4 @@ ssh -i a.pem root@a.com 访问
 直接ssh root@a.com 即可访问
 #### 出现 Could not open a connection to your authentication agent解决办法：
 >eval `ssh-agent -s`  
+>dadawdwadaw
