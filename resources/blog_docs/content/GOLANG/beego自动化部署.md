@@ -30,7 +30,7 @@ systemctl restart blog.service
 
 #### 服务器使用systemd 部署
 >$ nano /etc/systemd/system/dd-bi-go.service
-```shell
+```php
 [Unit]
 Description=blog
 After=blog.service
