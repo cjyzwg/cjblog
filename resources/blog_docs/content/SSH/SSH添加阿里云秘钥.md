@@ -13,5 +13,5 @@ PasswordAuthentication no
 ssh -i a.pem root@a.com 访问
 如果想省事的话，ssh-add -k a.pem，重启之后需要重新添加
 直接ssh root@a.com 即可访问
-#### 出现 Could not open a connection to your authentication agent解决办法：
+#### 出现 Could not open a connection to your authentication agent解决办法或者Permission denied (publickey).：
 >eval `ssh-agent -s`  
