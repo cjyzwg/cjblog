@@ -7,6 +7,7 @@ import (
 	"net/http"
 	"net/url"
 	"strconv"
+	"strings"
 
 	"github.com/cjyzwg/forestblog/models"
 )
@@ -39,7 +40,8 @@ func HandleData(w http.ResponseWriter, r *http.Request) {
 		fmt.Printf("%s\n", result)
 		fmt.Println(len(result))
 		//未知类型的推荐处理方法
-		all_list := make(map[string]string)
+		// all_list := make(map[string]string)
+		var s string
 		if len(result) == 0 {
 			list, _ := models.ReadMarkdownDir()
 			fmt.Println(list)
@@ -51,13 +53,24 @@ func HandleData(w http.ResponseWriter, r *http.Request) {
 					fmt.Println("json.marshal failed, err:", err)
 					return
 				}
-				all_list[v] = string(data)
+
+				jsonstr := string(data)
+				ss := jsonstr[1 : len(jsonstr)-1]
+				s = strings.Join([]string{s, ss}, ",")
+
+				// all_list[v] = string(data)
 			}
-			fmt.Println(all_list)
-			all_json, _ := json.Marshal(all_list)
-			all_string := string(all_json)
-			w.Header().Set("Content-Length", strconv.Itoa(len(all_string)))
-			w.Write([]byte(all_string))
+			fmt.Println(s[1:])
+			s = "[" + s[1:] + "]"
+
+			// fmt.Println("-------------------------------------------------------")
+			// fmt.Println(s[1:])
+			// fmt.Println("-------------------------------------------------------")
+			// all_json, _ := json.Marshal(all_list)
+			// all_string := string(all_json)
+			// fmt.Println(s)
+			w.Header().Set("Content-Length", strconv.Itoa(len(s)))
+			w.Write([]byte(s))
 
 			return
 		}
