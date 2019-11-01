@@ -6,11 +6,12 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
-	"github.com/cjyzwg/forestblog/config"
 	"io/ioutil"
 	"os"
 	"sort"
 	"strings"
+
+	"github.com/cjyzwg/forestblog/config"
 )
 
 func readMarkdown(path string) (Markdown, MarkdownDetails, error) {
@@ -53,7 +54,7 @@ func readMarkdown(path string) (Markdown, MarkdownDetails, error) {
 	fullContent.Markdown = content
 	fullContent.Body = string(markdown)
 
-	if ! bytes.HasPrefix(markdown, []byte("```json")) {
+	if !bytes.HasPrefix(markdown, []byte("```json")) {
 		content.Description = cropDesc(markdown)
 		return content, fullContent, nil
 	}
@@ -84,6 +85,7 @@ func cropDesc(c []byte) string {
 
 	return string(content[0:config.Cfg.DescriptionLen])
 }
+
 //读取路径下的md文件的部分信息json
 func GetMarkdown(path string) (Markdown, error) {
 
@@ -175,10 +177,10 @@ func GetMarkdownListByCache(dir string) (MarkdownList, error) {
 	}
 
 	cacheDir := config.CurrentDir + "/cache"
-	cacheInfo,err := os.Stat(cacheDir)
+	cacheInfo, err := os.Stat(cacheDir)
 
 	if err != nil || !cacheInfo.IsDir() {
-		if os.Mkdir(cacheDir,os.ModePerm) != nil{
+		if os.Mkdir(cacheDir, os.ModePerm) != nil {
 			return content, err
 		}
 	}
@@ -192,15 +194,29 @@ func GetMarkdownListByCache(dir string) (MarkdownList, error) {
 	return content, nil
 }
 
-func ReadMarkdownBody(path string) (string ,error){
+func ReadMarkdownBody(path string) (string, error) {
 
-	fullPath := config.Cfg.DocumentPath  + path
+	fullPath := config.Cfg.DocumentPath + path
 
 	markdown, err := ioutil.ReadFile(fullPath)
 
 	if err != nil {
-		return "" ,err
+		return "", err
 	}
 
-	return string(markdown) ,nil
+	return string(markdown), nil
+}
+
+func ReadMarkdownDir() ([]string, error) {
+	dir_list, err := ioutil.ReadDir(config.Cfg.DocumentPath + "/content")
+	if err != nil {
+		fmt.Println("read dir error")
+		return nil, err
+	}
+	var list []string
+	for _, v := range dir_list {
+		list = append(list, v.Name())
+	}
+	// fmt.Println(list)
+	return list, err
 }
