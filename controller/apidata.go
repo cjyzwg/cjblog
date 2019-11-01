@@ -113,7 +113,6 @@ func HandleData(w http.ResponseWriter, r *http.Request) {
 		fmt.Println(len(result))
 		//未知类型的推荐处理方法
 		// all_list := make(map[string]string)
-		var s string
 		if len(result) == 0 {
 			list, _ := models.ReadMarkdownDir()
 			fmt.Println(list)
