@@ -146,7 +146,7 @@ func HandleData(w http.ResponseWriter, r *http.Request) {
 			jsonnotes, _ := json.Marshal(notes)
 			fmt.Println("-------------------------------------------------------")
 
-			fmt.Println(string(jsonnotes))
+			//fmt.Println(string(jsonnotes))
 			fmt.Println("-------------------------------------------------------")
 
 			w.Header().Set("Content-Length", strconv.Itoa(len(jsonnotes)))
