@@ -98,14 +98,31 @@ func HandleData(w http.ResponseWriter, r *http.Request) {
 		fmt.Println(category)
 		markdownlist, err := models.GetMarkdownListByCache("/" + category)
 		// fmt.Println(markdownlist, err)
-		data, err := json.Marshal(markdownlist)
 		if err != nil {
-			fmt.Println("json.marshal failed, err:", err)
+			fmt.Println("no markdown files, err:", err)
 			return
 		}
-		fmt.Println(string(data))
-		w.Header().Set("Content-Length", strconv.Itoa(len(data)))
-		w.Write(data)
+		notes := Notes{}
+		//mardownlist 即可生成json,数据
+		for _, m := range markdownlist {
+			note := Note{}
+			mark, err := models.GetMarkdownDetails(m.Path)
+			if err != nil {
+				fmt.Println("the path is wrong,err:", err)
+				return
+			}
+			note.Date = mark.Date.Format("2006-01-02 15:04:05")
+			note.Title = mark.Title
+			note.Description = m.Description
+			note.Category = mark.Category
+			note.Content = mark.Body
+			notes = append(notes,note)
+
+		}
+		jsonnotes, _ := json.Marshal(notes)
+		//fmt.Println(jsonnotes)
+		w.Header().Set("Content-Length", strconv.Itoa(len(jsonnotes)))
+		w.Write(jsonnotes)
 	} else if r.Method == "POST" {
 		result, _ := ioutil.ReadAll(r.Body)
 		r.Body.Close()
