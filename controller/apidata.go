@@ -90,12 +90,27 @@ func HandleData(w http.ResponseWriter, r *http.Request) {
 	if r.Method == "GET" {
 		queryForm, err := url.ParseQuery(r.URL.RawQuery)
 		fmt.Println(queryForm)
-		if err != nil || len(queryForm["category"]) == 0 {
+		if err != nil {
 			fmt.Println("query is wrong", err)
 			return
 		}
+		if len(queryForm["category"]) == 0 {
+			list, _ := models.ReadMarkdownDir()
+			categorylists :=CategoryLists{}
+			for _, v := range list {
+				categorylist := CategoryList{}
+				categorylist.Category = v
+				categorylists = append(categorylists,categorylist)
+			}
+			jsoncategorylists, _ := json.Marshal(categorylists)
+			w.Header().Set("Content-Length", strconv.Itoa(len(jsoncategorylists)))
+			w.Write(jsoncategorylists)
+			return
+		}
+
 		category := queryForm["category"][0]
 		fmt.Println(category)
+
 		markdownlist, err := models.GetMarkdownListByCache("/" + category)
 		// fmt.Println(markdownlist, err)
 		if err != nil {
@@ -123,6 +138,8 @@ func HandleData(w http.ResponseWriter, r *http.Request) {
 		//fmt.Println(jsonnotes)
 		w.Header().Set("Content-Length", strconv.Itoa(len(jsonnotes)))
 		w.Write(jsonnotes)
+
+
 	} else if r.Method == "POST" {
 		result, _ := ioutil.ReadAll(r.Body)
 		r.Body.Close()
@@ -183,3 +200,8 @@ type Note struct {
 	Content     string `json:"content"`
 }
 type Notes []Note
+
+type CategoryList struct {
+	Category       string `json:"category"`
+}
+type CategoryLists []CategoryList
