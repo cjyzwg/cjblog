@@ -206,7 +206,7 @@ func HandleDocumentData(w http.ResponseWriter, r *http.Request) {
 			fmt.Println("r.MultipartReader() err,",err)
 			return
 		}
-		r.Body.Close()
+		//r.Body.Close()
 		form ,_ := mr.ReadForm(128)
 		m := make(map[string]string)
 		for k,v := range form.Value{
