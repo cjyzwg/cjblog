@@ -3,10 +3,14 @@ package controller
 import (
 	"encoding/json"
 	"fmt"
+	"github.com/cjyzwg/forestblog/config"
 	"github.com/cjyzwg/forestblog/models"
+	"io"
 	"io/ioutil"
 	"net/http"
 	"net/url"
+	"os"
+	"os/exec"
 	"strconv"
 	"strings"
 )
@@ -192,6 +196,87 @@ func HandleData(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
+
+func HandleDocumentData(w http.ResponseWriter, r *http.Request) {
+	//r.ParseForm() //解析参数，默认是不会解析的
+	fmt.Println("method is:" + r.Method)
+	if r.Method == "POST" {
+		mr,err := r.MultipartReader()
+		if err != nil{
+			fmt.Println("r.MultipartReader() err,",err)
+			return
+		}
+		r.Body.Close()
+		form ,_ := mr.ReadForm(128)
+		m := make(map[string]string)
+		for k,v := range form.Value{
+			fmt.Println("value,k,v = ",k,",",v)
+			if k=="title" {
+				m["title"] = v[0]
+			}
+			if k=="body"{
+				m["body"] = v[0]
+			}
+		}
+		blogPath := config.CurrentDir + "/" + config.Cfg.DocumentPath
+		filename :=blogPath+"/content/PHP/"+m["title"]+".md"
+		newfile, error := os.OpenFile(filename, os.O_RDWR|os.O_CREATE, 0766)
+		if error != nil {
+			fmt.Println(error)
+		}
+		io.WriteString(newfile, m["body"])
+
+		newfile.Close()
+
+		_, err = exec.LookPath("git")
+
+		if err != nil {
+			fmt.Println("请先安装git并克隆博客文档到" + blogPath)
+
+		}
+		fmt.Println("blogpath is:"+blogPath)
+
+		//cmd := exec.Command("git", "pull")
+		//cmd.Dir = blogPath
+		//_, err = cmd.CombinedOutput()
+		//if err != nil {
+		//	fmt.Println("cmd.Run() failed with", err)
+		//	return
+		//}
+
+		cmd := exec.Command("git", "add",filename)
+		cmd.Dir = blogPath
+		_, err = cmd.CombinedOutput()
+		if err != nil {
+			fmt.Println("cmd.Run() failed with", err)
+			return
+		}
+		cmd2 := exec.Command("git", "commit","-m","add")
+		cmd2.Dir = blogPath
+		_, err = cmd2.CombinedOutput()
+		if err != nil {
+			fmt.Println("cmd2.Run() failed with", err)
+			return
+		}
+		cmd3 := exec.Command("git", "push","origin","master")
+		cmd3.Dir = blogPath
+		_, err = cmd3.CombinedOutput()
+		if err != nil {
+			fmt.Println("cmd3.Run() failed with", err)
+			return
+		}
+
+		var categorylists = "1"
+		jsoncategorylists, _ := json.Marshal(categorylists)
+		w.Header().Set("Content-Length", strconv.Itoa(len(jsoncategorylists)))
+		w.Write(jsoncategorylists)
+		return
+
+
+	}
+}
+
+
 type Note struct {
 	Title       string `json:"title"`
 	Date    	string  `json:"date"`
@@ -205,3 +290,6 @@ type CategoryList struct {
 	Category       string `json:"category"`
 }
 type CategoryLists []CategoryList
+
+
+

@@ -14,6 +14,7 @@ func initWebRoute() {
 	http.HandleFunc("/works", controller.Works)
 	http.HandleFunc("/about", controller.About)
 	http.HandleFunc("/api", controller.HandleData)
+	http.HandleFunc("/savedocument", controller.HandleDocumentData)
 	//二级页面
 	http.HandleFunc("/article", controller.Article)
 	http.HandleFunc("/category", controller.CategoryArticle)
