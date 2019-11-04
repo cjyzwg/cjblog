@@ -244,9 +244,9 @@ func HandleDocumentData(w http.ResponseWriter, r *http.Request) {
 		//	return
 		//}
 
-		cmd := exec.Command("git", "add",filename)
-		cmd.Dir = blogPath
-		_, err = cmd.CombinedOutput()
+		cmd1 := exec.Command("git", "add",filename)
+		cmd1.Dir = blogPath
+		_, err = cmd1.CombinedOutput()
 		if err != nil {
 			fmt.Println("cmd.Run() failed with", err)
 			return
@@ -268,7 +268,9 @@ func HandleDocumentData(w http.ResponseWriter, r *http.Request) {
 
 		var categorylists = "1"
 		jsoncategorylists, _ := json.Marshal(categorylists)
-		w.Header().Set("Content-Length", strconv.Itoa(len(jsoncategorylists)))
+		fmt.Println(string(jsoncategorylists))
+		//返回的这个是给json用的，需要去掉
+		//w.Header().Set("Content-Length", strconv.Itoa(len(jsoncategorylists)))
 		w.Write(jsoncategorylists)
 		return
 
