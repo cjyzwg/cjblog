@@ -4,7 +4,7 @@
 #### 看下协程池的原理
 ![avatar](../../assets/workerpool.jpg)  
 
-- 协程池结构体,并且建立有缓存的channel
+#### 协程池结构体,并且建立有缓存的channel
 ```go
 type Workpool struct {
 	Jobchannel chan *Task
@@ -19,7 +19,7 @@ func NewWorkpool(maxsize int,maxlen int) *Workpool {
 	return &w
 }
 ```
-- Task 任务，这里我是派发了十个任务，然后休息两秒，然后再派发
+#### Task 任务，这里我是派发了十个任务，然后休息两秒，然后再派发
 ```go
 func (t *Task) Execute(){
 	fmt.Println("任务id为：",t.Id,",当前时间为：",time.Now())
