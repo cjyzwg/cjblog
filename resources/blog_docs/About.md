@@ -2,6 +2,8 @@
 - 90后|天蝎座  
 - 后端程序🐶一枚 
 - 精通php、linux、mysql
+- 使用树莓派用asterisk搭建通话系统
+- 搭建vpn访问内网
 - go正在学习中 
 - flutter尝试中
 
