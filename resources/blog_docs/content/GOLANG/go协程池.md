@@ -112,4 +112,4 @@ func GetCacheChannel(){
 ```
 
 写完这段代码，网上还有其他协程池的原理，大同小异
-- [<font color=#0099ff>startmyblog</font>](https://segmentfault.com/a/1190000018193161) --- 其他高效协程池做法
+- [<font color=#0099ff>其他高效协程池做法</font>](https://segmentfault.com/a/1190000018193161)
