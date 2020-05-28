@@ -29,3 +29,7 @@ replace (
 	launchpad.net/gocheck => github.com/go-check/check v0.0.0-20180628173108-788fd7840127
 )
 ```
+### 一键解决这个问题
+export GOPROXY=https://goproxy.io 或者国内 https://goproxy.cn
+export GO111MODULE=on 
+
