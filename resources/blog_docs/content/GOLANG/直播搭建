@@ -1,0 +1,63 @@
+### linux 搭建直播服务器
+1.
+>$ apt-get install ffmpeg 
+
+>$ git clone https://github.com/gwuhaolin/livego.git 
+
+2.记得需要加
+export GOPROXY=https://goproxy.io 或者国内 https://goproxy.cn  
+export GO111MODULE=on 
+ 
+3.同时在阿里云安全组规则把livego.yaml 里面的端口全部开启
+
+4.使用tmux  go run main.go
+
+#### 添加ngix 配置oss 反向代理模块 /etc/nginx/conf.d/oss.conf
+``` conf
+
+server {
+    server_name  localhost; # oss域名，替换成你自己的域名
+    server_name_in_redirect off; # 多域名防干扰，详细说明可自行查阅
+
+    location / {
+      # 反向代理oss地址，需替换成你的oss内网或外网地址
+      proxy_pass http://bb.oss-cn-shanghai-internal.aliyuncs.com/;
+      # 设置反向代理时请求header, 也是本方案核心内容
+      # $ossDate， $ossAuth 变量名需和nginx.conf文件内变量名一致
+      #proxy_set_header Date $ossDate;
+      #proxy_set_header Authorization $ossAuth;
+    }
+
+}
+
+```  
+#### 客户端我使用的是dplayer 因为兼容微信 safari 浏览器
+具体的代码
+参考 https://github.com/MoePlayer/DPlayer  
+仅需更改其中的url即可 
+比如可使用刚才 http://localhost/a.mp4 
+如果出现cors跨域问题，需要在oss端更改权限设置 将请求get post添加上，header上添加* 即可访问.
+
+#### 直播推流
+1.打开 http://localhost:8090/control/get?room=movie movie 可以变成任意的，但是下面要保持一致 
+2.在dplayer 的url中设置 为：http://localhost:7002/live/movie.m3u8
+3. 
+(1) 摄像头推流 
+ffmpeg -f avfoundation -framerate 30 -video_size 1280x720 -i  "0"  -vcodec libx264 -acodec libfaac -f flv   rtmp://localhost:1935/live/rfBd56ti2SMtYvSgD5xAV0YU99zampta7Z7S575KLkIZ9PYk  
+(2) 视频推流 
+ffmpeg -re -i 123.mp4 -c copy -f flv rtmp://localhost:1935/live/rfBd56ti2SMtYvSgD5xAV0YU99zampta7Z7S575KLkIZ9PYk  
+(3) 电脑端的推流可以使用obs  
+(4) 手机端推流使用腾讯的视频云工具包 
+摄像头推流-》rtmp://localhost:1935/live/rfBd56ti2SMtYvSgD5xAV0YU99zampta7Z7S575KLkIZ9PYk 
+
+#### 直播拉流
+拉流的地址就是： http://localhost:7002/live/movie.m3u8 
+
+#### 上传视频文件到oss 
+此处用https://github.com/dcq2016/plupload 上传到oss 更改其中的
+src/components/Plupload.vue中  
+accessid 
+accesskey 
+host  
+换成自己阿里云对应的值
+
