@@ -85,6 +85,6 @@ verb 3
 #### 同时修改之后 /etc/init.d/openvpn restart  
 
 - 中途卡住的问题
-1.openvpn-install.sh 中要去调用github的代码，阿里云实例竟然获取不到github上的数据，只能手动下载，再放到服务器中，用了文件挂载 sshfs排查问题。
+1.openvpn-install.sh 中要去调用github的代码，阿里云实例竟然获取不到github上的数据，只能手动下载，再放到服务器中，用了文件挂载 sshfs排查问题。   
 2.apt-get update 一直显示 build.openvpn.net connect time out
 是因为/etc/apt/sources.list.d 中有一些缓存，需要直接删除，再处理。
