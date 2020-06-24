@@ -1,4 +1,7 @@
 ### LXC 容器搭建nsq集群
+#### go-nsq
+- 生产者角色和消费者角色
+
 ```yaml
 version: '2' # 高版本支持3
 services:
