@@ -30,7 +30,7 @@ network()
     return 0
 }
 
-# awk 'BEGIN { FS=":";print "统计销售金额";total=0} {print NR;total=total+NR;} END {printf "销售金额总计：%.2f",total}' sx
+#awk 'BEGIN { FS=":";print "统计销售金额";total=0} {print NR;total=total+NR;} END {printf "销售金额总计：%.2f",total}' sx
 lastnr=$(lxc list|awk ' NR>2 && $2!="" && $2!="|" {print $2}'|awk '{print NR}' | sed -n '$p')
 if [ x"$lastnr" != x ];then
     state=$1
@@ -141,8 +141,8 @@ if [ x"$lastnr" != x ];then
         esac
     fi
 fi
-
 exit $?
+
 ```
 
 ##### lxc_restart.sh
