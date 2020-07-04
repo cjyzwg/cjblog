@@ -1,4 +1,17 @@
 ### 网站出现502
+- 杀死进程
+``` shell
+    #!/bin/sh
+    pids=$(ps -e -o 'pid,comm,args,pcpu,rsz,vsz,stime,user,uid' | sort -nrk5 | grep www | grep -v grep|awk ' $2!="nginx" {print $1}')
+    #echo $pids
+    if [ "$pids" != "" ];then
+    for  pid  in   $pids;
+    do
+    echo $pid
+    kill -9 $pid
+    done
+    fi
+```
 - 调高进程数  
 使用 netstat -napo |grep "php-fpm" | wc -l 查看一下当前 fastcgi 进程个数，如果个数接近 conf 里配置的上限，就需要调高进程数。
 但也不能无休止调高，可以根据服务器内存情况，可以把 php-fpm 子进程数调到 100 或以上，在 4G 内存的服务器上 200 就可以。
