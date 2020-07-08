@@ -5,5 +5,6 @@
 - [<font color=#0099ff>grpc-php</font>](https://github.com/cjyzwg/grpc-php) --- 学习grpc，并用go做服务端，php做客户端。
 - [<font color=#0099ff>forestblog</font>](https://github.com/cjyzwg/forestblog) --- 使用forestblog做博客。
 - [<font color=#0099ff>startmyblog</font>](https://github.com/cjyzwg/startmyblog) --- 使用flutter做的app，调取上面的go后台做接口。  
+- [<font color=#0099ff>startmyblog</font>](https://github.com/cjyzwg/qrcp_pass) --- 最近学习剪辑视频，解决跨平台传文件，不用经过微信压缩即可传视频。  
 - [<font color=#0099ff>docblog</font>](http://doc.hexiefamily.xin/) --- 这个使用mindoc用作更新文档记录用。
 

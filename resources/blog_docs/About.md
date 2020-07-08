@@ -6,6 +6,7 @@
 - 搭建vpn访问内网
 - go正在学习中 
 - flutter尝试中，已做了一个demo,还在做其他
+- 最近迷上剪辑视频，finalcutpro 达芬奇调色也在学习中
 
 ### 关于本站
 - github上找的博客差强人意，要么就是装mysql,redis,起很多端口，太麻烦，找到了ForestBlog，既方便，又可以学md语法
