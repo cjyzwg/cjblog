@@ -10,11 +10,11 @@ Cli同样也需要
  /etc/php/7.0/cli/conf.d/20-redis.ini
 - php -m 即有
 ### Redis应用
-[<font color=#0099ff>转发链接地址</font>](https://www.liaotaoo.cn/358.html) 
+[<font color=#0099ff>转发链接地址</font>](https://www.liaotaoo.cn/358.html)  
+
 ```php
-<?php
- 
- 
+
+<?php 
 namespace app\controller;
  
  
