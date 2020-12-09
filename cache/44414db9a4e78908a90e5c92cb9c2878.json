@@ -1,0 +1,1 @@
+[{"title":"REDIS安装及应用.md","date":"2020.11.11 17:26","description":"### Redis安装\n- pecl install redis\n- nano /etc/php/7.0/mods-available/redis.ini\nextension=redis.so\nFpm 软连接\n- ln -s /etc/php/7.0/mods-available/redis.ini\n /etc/php/7.0/fpm/conf.d/20-redis.ini\nCli同样也需要\n- ","tags":null,"author":"","category":"REDIS","path":"/REDIS/REDIS安装及应用.md"}]
