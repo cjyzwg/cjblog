@@ -1,1 +1,0 @@
-[{"title":"Openvpn.md","date":"2020.11.11 17:26","description":"### 搭建OpenVPN （目的是用本地的mac连上公司的windows电脑）\n\n1.wget https://git.io/vpn -O openvpn-install.sh \u0026\u0026 bash openvpn-install.sh\n\n#### 出现的问题\n- 客户端连上 但是上不了外网  \nnano /etc/openvpn/server.conf  \n```conf\n    这部分改掉，改成下","tags":null,"author":"","category":"VPN","path":"/VPN/Openvpn.md"}]

@@ -1,1 +1,0 @@
-[{"title":"dnsmasq配置局域网域名.md","date":"2020.11.11 17:26","description":"### 安装dnsmasq\n- apt-get install -y dnsmasq\n#### /etc/dnsmasq.conf\n``` conf\nbogus-priv\nno-resolv\nserver=100.100.2.138\nserver=100.100.2.136\ninterface=tun0\nlisten-address=127.0.0.1\nbind-interfaces\naddn-h","tags":null,"author":"","category":"DNSMASQ","path":"/DNSMASQ/dnsmasq配置局域网域名.md"}]
