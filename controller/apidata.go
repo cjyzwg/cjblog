@@ -108,7 +108,12 @@ func HandleArticleListData(w http.ResponseWriter, r *http.Request) {
 		fmt.Println("search markdown is wrong", err)
 		return
 	}
-	jsoncategorylists, _ := json.Marshal(markdownPagination)
+	rst := ContentResult{}
+	rst.Code = 200
+	rst.Content = markdownPagination
+
+	jsoncategorylists, _ := json.Marshal(rst)
+
 	w.Header().Set("Content-Length", strconv.Itoa(len(jsoncategorylists)))
 	w.Write(jsoncategorylists)
 }
@@ -122,7 +127,13 @@ func HandleArticleContentData(w http.ResponseWriter, r *http.Request) {
 
 	path := r.Form.Get("path")
 	article, _ := models.GetMarkdownDetails(path)
-	jsoncategorylists, _ := json.Marshal(article)
+
+	rst := MarkdowndetailsResult{}
+	rst.Code = 200
+	rst.Content = article
+
+	jsoncategorylists, _ := json.Marshal(rst)
+
 	w.Header().Set("Content-Length", strconv.Itoa(len(jsoncategorylists)))
 	w.Write(jsoncategorylists)
 }
@@ -141,7 +152,13 @@ func HandleCategoryData(w http.ResponseWriter, r *http.Request) {
 		fmt.Println("categoryname markdown is wrong", err)
 		return
 	}
-	jsoncategorylists, _ := json.Marshal(categories)
+
+	rst := CategoryResult{}
+	rst.Code = 200
+	rst.Content = categories
+
+	jsoncategorylists, _ := json.Marshal(rst)
+
 	w.Header().Set("Content-Length", strconv.Itoa(len(jsoncategorylists)))
 	w.Write(jsoncategorylists)
 
@@ -165,8 +182,11 @@ func HandleCategoryContentData(w http.ResponseWriter, r *http.Request) {
 		fmt.Println("categoryname markdown is wrong", err)
 		return
 	}
+	rst := ContentResult{}
+	rst.Code = 200
+	rst.Content = content
 
-	jsoncategorylists, _ := json.Marshal(content)
+	jsoncategorylists, _ := json.Marshal(rst)
 	w.Header().Set("Content-Length", strconv.Itoa(len(jsoncategorylists)))
 	w.Write(jsoncategorylists)
 
@@ -440,6 +460,20 @@ func HandleDelData(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
+type MarkdowndetailsResult struct {
+	Code     int 
+	Content  models.MarkdownDetails
+}
+
+type CategoryResult struct {
+	Code     int 
+	Content  models.Categories
+}
+
+type ContentResult struct {
+	Code     int 
+	Content  models.MarkdownPagination
+}
 
 
 type Note struct {
