@@ -461,18 +461,18 @@ func HandleDelData(w http.ResponseWriter, r *http.Request) {
 }
 
 type MarkdowndetailsResult struct {
-	Code     int 
-	Content  models.MarkdownDetails
+	Code     int  `json:"code"`
+	Content  models.MarkdownDetails `json:"content"`
 }
 
 type CategoryResult struct {
-	Code     int 
-	Content  models.Categories
+	Code     int `json:"code"`
+	Content  models.Categories `json:"content"`
 }
 
 type ContentResult struct {
-	Code     int 
-	Content  models.MarkdownPagination
+	Code     int `json:"code"`
+	Content  models.MarkdownPagination `json:"content"`
 }
 
 
