@@ -19,6 +19,7 @@ func initWebRoute() {
 	http.HandleFunc("/apis/articlelist", controller.HandleArticleListData) //new api
 	http.HandleFunc("/apis/articlecontent", controller.HandleArticleContentData) //new api
 	http.HandleFunc("/apis/category", controller.HandleCategoryData) //new api
+	http.HandleFunc("/apis/categorycontent", controller.HandleCategoryContentData) //new api
 	//二级页面
 	http.HandleFunc("/article", controller.Article)
 	http.HandleFunc("/category", controller.CategoryArticle)

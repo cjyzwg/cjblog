@@ -148,6 +148,31 @@ func HandleCategoryData(w http.ResponseWriter, r *http.Request) {
 
 }
 
+//categorycontent name
+func HandleCategoryContentData(w http.ResponseWriter, r *http.Request) {
+	err := r.ParseForm()
+	if err != nil {
+		fmt.Println("query is wrong", err)
+		return
+	}
+	categoryName := r.Form.Get("name")
+	page, err := strconv.Atoi(r.Form.Get("page"))
+	if err != nil {
+		page = 1
+	}
+	content,err := service.GetArticleList(page, "/"+categoryName,"")
+	if err != nil {
+		fmt.Println("categoryname markdown is wrong", err)
+		return
+	}
+
+	jsoncategorylists, _ := json.Marshal(content)
+	w.Header().Set("Content-Length", strconv.Itoa(len(jsoncategorylists)))
+	w.Write(jsoncategorylists)
+
+
+}
+
 //old api 
 func HandleData(w http.ResponseWriter, r *http.Request) {
 	r.ParseForm() //解析参数，默认是不会解析的
