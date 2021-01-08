@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"github.com/cjyzwg/forestblog/config"
 	"github.com/cjyzwg/forestblog/models"
+	"github.com/cjyzwg/forestblog/service"
 	"io"
 	"io/ioutil"
 	"net/http"
@@ -88,6 +89,55 @@ func HandleDataTest(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
+//new api
+func HandleApiData(w http.ResponseWriter, r *http.Request) {
+	err := r.ParseForm()
+	if err != nil {
+		fmt.Println("query is wrong", err)
+		return
+	}
+
+	page, err := strconv.Atoi(r.Form.Get("page"))
+	if err != nil {
+		page = 1
+	}
+
+	categoryName := r.Form.Get("name")
+	if categoryName != "" {
+		content,err := service.GetArticleList(page, "/"+categoryName,"")
+		if err != nil {
+			fmt.Println("categoryname markdown is wrong", err)
+			return
+		}
+		jsoncategorylists, _ := json.Marshal(content)
+		w.Header().Set("Content-Length", strconv.Itoa(len(jsoncategorylists)))
+		w.Write(jsoncategorylists)
+	
+	} else {
+		path := r.Form.Get("path")
+		if path != "" {
+			article, _ := models.GetMarkdownDetails(path)
+			jsoncategorylists, _ := json.Marshal(article)
+			w.Header().Set("Content-Length", strconv.Itoa(len(jsoncategorylists)))
+			w.Write(jsoncategorylists)
+
+		}else{
+			searchKey := r.Form.Get("search")
+			markdownPagination, err := service.GetArticleList(page, "/", searchKey)
+			if err != nil {
+				fmt.Println("search markdown is wrong", err)
+				return
+			}
+			jsoncategorylists, _ := json.Marshal(markdownPagination)
+			w.Header().Set("Content-Length", strconv.Itoa(len(jsoncategorylists)))
+			w.Write(jsoncategorylists)
+		}
+
+	}
+
+}
+
+//old api 
 func HandleData(w http.ResponseWriter, r *http.Request) {
 	r.ParseForm() //解析参数，默认是不会解析的
 	fmt.Println("method is:" + r.Method)
@@ -96,6 +146,19 @@ func HandleData(w http.ResponseWriter, r *http.Request) {
 		fmt.Println(queryForm)
 		if err != nil {
 			fmt.Println("query is wrong", err)
+			return
+		}
+		if len(queryForm["search"]) > 0 {
+			// searchKey := queryForm["search"][0]
+			page :=1
+			markdownPagination, marerr := service.GetArticleList(page, "/", "")
+			if marerr != nil {
+				fmt.Println("query is wrong", marerr)
+				return
+			}
+			jsoncategorylists, _ := json.Marshal(markdownPagination)
+			w.Header().Set("Content-Length", strconv.Itoa(len(jsoncategorylists)))
+			w.Write(jsoncategorylists)
 			return
 		}
 		if len(queryForm["category"]) == 0 {
@@ -111,6 +174,7 @@ func HandleData(w http.ResponseWriter, r *http.Request) {
 			w.Write(jsoncategorylists)
 			return
 		}
+
 
 		category := queryForm["category"][0]
 		fmt.Println(category)
