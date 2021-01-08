@@ -13,7 +13,8 @@ func initWebRoute() {
 	http.HandleFunc("/categories", controller.Categories)
 	http.HandleFunc("/works", controller.Works)
 	http.HandleFunc("/about", controller.About)
-	http.HandleFunc("/api", controller.HandleApiData)
+	http.HandleFunc("/apis", controller.HandleApiData) //new api
+	http.HandleFunc("/api", controller.HandleData)// old api
 	http.HandleFunc("/savedocument", controller.HandleDocumentData)
 	http.HandleFunc("/del", controller.HandleDelData)
 	//二级页面
