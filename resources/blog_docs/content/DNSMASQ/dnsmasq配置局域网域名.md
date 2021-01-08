@@ -19,7 +19,7 @@ addn-hosts=/etc/internal_ips
 10.8.0.4 s1.int
 10.8.0.5 s2.int 
 10.8.0.6 s3.int 
-10.8.0.7 s4.int 
+10.8.0.7 s4.int
 ```
 
 #### dnsmasq 配置
