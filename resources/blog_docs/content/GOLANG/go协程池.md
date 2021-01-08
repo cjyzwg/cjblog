@@ -2,7 +2,7 @@
 - 网上go协程池大同小异，理解原理就可以了，我是根据bilibili上一个视频操作的，讲的还挺好的，自行搜索下，不过因为这个视频中任务队列是没有长度限制的，所以在那个基础上进行改编。
 
 #### 看下协程池的原理
-![avatar](../../assets/workerpool.jpg)  
+![avatar](https://blog.hexiefamily.xin/assets/workerpool.jpg)  
 
 #### 协程池结构体,并且建立有缓存的channel
 ```go

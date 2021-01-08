@@ -2,7 +2,7 @@
 -基于[<font color=#0099ff>go协程池</font>](http://blog.hexiefamily.xin/article?path=%2fGOLANG%2fgo%e5%8d%8f%e7%a8%8b%e6%b1%a0.md)  
 
 #### 看下协程池的原理
-![avatar](../../assets/workerpool2.png)  
+![avatar](https://blog.hexiefamily.xin/assets/workerpool2.png)  
 
 #### 协程池结构体,并且建立有缓存的任务channel
 ```go

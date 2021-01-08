@@ -12,15 +12,13 @@ bind-interfaces
 addn-hosts=/etc/internal_ips
 ```
 #### /etc/internal_ips
-```go
-10.8.0.1 main.int
-10.8.0.2 cj.int
-10.8.0.3 cjwindows.int
-10.8.0.4 s1.int
-10.8.0.5 s2.int 
-10.8.0.6 s3.int 
-10.8.0.7 s4.int
-```
+10.8.0.1 main.int  
+10.8.0.2 cj.int  
+10.8.0.3 cjwindows.int  
+10.8.0.4 s1.int  
+10.8.0.5 s2.int   
+10.8.0.6 s3.int   
+10.8.0.7 s4.int    
 
 #### dnsmasq 配置
 ![avatar](https://blog.hexiefamily.xin/assets/dnsmasq.jpg)

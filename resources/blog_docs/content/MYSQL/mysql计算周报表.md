@@ -16,7 +16,7 @@ from resdata  where date >'2014-11-14 00:00:00' and date<'2019-12-14 23:59:59'  
 ```
 
 如下图  
-![avatar](../../assets/mysql1.jpg)  
+![avatar](https://blog.hexiefamily.xin/assets/mysql1.jpg)  
 
 #### 列出时间段中的所有周
 ```php
