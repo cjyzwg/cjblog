@@ -21,5 +21,6 @@ addn-hosts=/etc/internal_ips
 10.8.0.6 s3.int 
 10.8.0.7 s4.int 
 ```
+
 #### dnsmasq 配置
 ![avatar](https://blog.hexiefamily.xin/assets/dnsmasq.jpg)
