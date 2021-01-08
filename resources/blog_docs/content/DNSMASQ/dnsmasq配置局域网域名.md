@@ -12,7 +12,7 @@ bind-interfaces
 addn-hosts=/etc/internal_ips
 ```
 #### /etc/internal_ips
-``` conf
+``` go
 10.8.0.1 main.int
 10.8.0.2 cj.int
 10.8.0.3 cjwindows.int
