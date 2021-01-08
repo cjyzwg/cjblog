@@ -89,8 +89,9 @@ func HandleDataTest(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-//new api
-func HandleApiData(w http.ResponseWriter, r *http.Request) {
+//new api article list 
+// params: page search
+func HandleArticleListData(w http.ResponseWriter, r *http.Request) {
 	err := r.ParseForm()
 	if err != nil {
 		fmt.Println("query is wrong", err)
@@ -101,39 +102,49 @@ func HandleApiData(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		page = 1
 	}
-
-	categoryName := r.Form.Get("name")
-	if categoryName != "" {
-		content,err := service.GetArticleList(page, "/"+categoryName,"")
-		if err != nil {
-			fmt.Println("categoryname markdown is wrong", err)
-			return
-		}
-		jsoncategorylists, _ := json.Marshal(content)
-		w.Header().Set("Content-Length", strconv.Itoa(len(jsoncategorylists)))
-		w.Write(jsoncategorylists)
-	
-	} else {
-		path := r.Form.Get("path")
-		if path != "" {
-			article, _ := models.GetMarkdownDetails(path)
-			jsoncategorylists, _ := json.Marshal(article)
-			w.Header().Set("Content-Length", strconv.Itoa(len(jsoncategorylists)))
-			w.Write(jsoncategorylists)
-
-		}else{
-			searchKey := r.Form.Get("search")
-			markdownPagination, err := service.GetArticleList(page, "/", searchKey)
-			if err != nil {
-				fmt.Println("search markdown is wrong", err)
-				return
-			}
-			jsoncategorylists, _ := json.Marshal(markdownPagination)
-			w.Header().Set("Content-Length", strconv.Itoa(len(jsoncategorylists)))
-			w.Write(jsoncategorylists)
-		}
-
+	searchKey := r.Form.Get("search")
+	markdownPagination, err := service.GetArticleList(page, "/", searchKey)
+	if err != nil {
+		fmt.Println("search markdown is wrong", err)
+		return
 	}
+	jsoncategorylists, _ := json.Marshal(markdownPagination)
+	w.Header().Set("Content-Length", strconv.Itoa(len(jsoncategorylists)))
+	w.Write(jsoncategorylists)
+}
+// params: path
+func HandleArticleContentData(w http.ResponseWriter, r *http.Request) {
+	err := r.ParseForm()
+	if err != nil {
+		fmt.Println("query is wrong", err)
+		return
+	}
+
+	path := r.Form.Get("path")
+	article, _ := models.GetMarkdownDetails(path)
+	jsoncategorylists, _ := json.Marshal(article)
+	w.Header().Set("Content-Length", strconv.Itoa(len(jsoncategorylists)))
+	w.Write(jsoncategorylists)
+}
+
+//category
+func HandleCategoryData(w http.ResponseWriter, r *http.Request) {
+	err := r.ParseForm()
+	if err != nil {
+		fmt.Println("query is wrong", err)
+		return
+	}
+
+
+	categories, err := service.GetCategories()
+	if err != nil {
+		fmt.Println("categoryname markdown is wrong", err)
+		return
+	}
+	jsoncategorylists, _ := json.Marshal(categories)
+	w.Header().Set("Content-Length", strconv.Itoa(len(jsoncategorylists)))
+	w.Write(jsoncategorylists)
+
 
 }
 
