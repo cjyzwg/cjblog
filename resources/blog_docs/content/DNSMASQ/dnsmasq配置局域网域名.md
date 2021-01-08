@@ -1,7 +1,7 @@
 ### 安装dnsmasq
 - apt-get install -y dnsmasq
 #### /etc/dnsmasq.conf
-``` conf
+```conf
 bogus-priv
 no-resolv
 server=100.100.2.138
@@ -12,7 +12,7 @@ bind-interfaces
 addn-hosts=/etc/internal_ips
 ```
 #### /etc/internal_ips
-``` go
+```go
 10.8.0.1 main.int
 10.8.0.2 cj.int
 10.8.0.3 cjwindows.int
