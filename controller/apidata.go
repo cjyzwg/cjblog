@@ -108,6 +108,11 @@ func HandleArticleListData(w http.ResponseWriter, r *http.Request) {
 		fmt.Println("search markdown is wrong", err)
 		return
 	}
+	lastpage := markdownPagination.PageNumber[len(markdownPagination.PageNumber)-1]
+	if page>lastpage {
+		tmpMark := models.MarkdownList{}
+		markdownPagination.Markdowns = tmpMark
+	}
 	rst := ContentResult{}
 	rst.Code = 200
 	rst.Content = markdownPagination
