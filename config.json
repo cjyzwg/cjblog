@@ -1,6 +1,6 @@
 {
   "port": 8081,
-  "pageSize": 5,
+  "pageSize": 7,
   "descriptionLen": 200,
   "author": "Chensir",
   "webHookSecret": "cjyzwg",
