@@ -1,8 +1,8 @@
 # 博客前后端均已开源，后端golang，前端uniapp
 
 ## 简介
-后端地址：[cjblog](https://github.com/cjyzwg/cjblog)  
-前端地址：[uniblog](https://github.com/cjyzwg/uniblog)  
+后端地址：[cjblog](https://github.com/cjyzwg/cjblog)  国内码云地址：[cjblog](https://gitee.com/cjyzwg/cjblog) 
+前端地址：[uniblog](https://github.com/cjyzwg/uniblog)  国内码云地址：[uniblog](https://gitee.com/cjyzwg/uniblog)
 博客地址：[博客](https://blog.hexiefamily.xin)  
 配合 [**blog**](https://github.com/cjyzwg/cjblog) ,借鉴[**WeHalo**](https://github.com/aquanlerou/WeHalo)样式开发出来的 **简约风** uniapp版博客，可供多端使用。
 | QQ交流群: 469064015   | 微信群  |
