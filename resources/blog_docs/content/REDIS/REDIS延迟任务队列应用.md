@@ -30,7 +30,8 @@
 
 
 最后采用
-https://github.com/chenlinzhong/php-delayqueue大佬的，简直顶礼膜拜，现在还没研究源码，只是在应用层次，之后和go版本一起看，应该是类似go的协程池处理
+https://github.com/chenlinzhong/php-delayqueue  
+大佬的，简直顶礼膜拜，现在还没研究源码，只是在应用层次，之后和go版本一起看，应该是类似go的协程池处理
 
 
 整个延迟队列主要由4个部分
