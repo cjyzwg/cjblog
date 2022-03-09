@@ -3,4 +3,4 @@ cache/
 .vscode/
 .env
 .code
-.push.sh
+push.sh
