@@ -4,3 +4,4 @@ cache/
 .env
 .code
 push.sh
+.obsidian/
