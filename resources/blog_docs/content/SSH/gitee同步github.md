@@ -18,13 +18,13 @@
 
 ![](https://gitee.com/cjyzwg/img/raw/master/202203131223319.png)
 
-2.在 GitHub 项目的「**Settings** -> **Secrets** → **New repository secret**」路径下配置好命名为 **GITEE_RSA_PRIVATE_KEY**，value值填写 **id_rsa 私钥**的内容。
+2.在 GitHub 项目的「**Settings**  ->  **Secrets**  →  **New repository secret**」路径下配置好命名为 **GITEE_RSA_PRIVATE_KEY**，value值填写 **id_rsa 私钥**的内容。
 
 3.在 GitHub 的个人设置页面「**Settings** ->  **SSH and GPG keys**」配置 SSH Keys 公钥（即：**id_rsa.pub**），命名随意。
 
 ![](https://gitee.com/cjyzwg/img/raw/master/202203131227576.png)
 
-4.在 Gitee 的个人设置页面「**安全设置** -> **SSH 公钥**」配置 SSH 公钥（即：**id_rsa.pub**），命名随意。
+4.在 Gitee 的个人设置页面「**安全设置** -> **SSH公钥**」配置 SSH 公钥（即：**id_rsa.pub**），命名随意。
 
 ![](https://gitee.com/cjyzwg/img/raw/master/202203131228907.png)
 
