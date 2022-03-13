@@ -4,11 +4,12 @@ import (
 	"crypto/hmac"
 	"crypto/sha1"
 	"encoding/hex"
-	"github.com/cjyzwg/forestblog/config"
-	"github.com/cjyzwg/forestblog/helper"
 	"io/ioutil"
 	"log"
 	"net/http"
+
+	"github.com/cjyzwg/forestblog/config"
+	"github.com/cjyzwg/forestblog/helper"
 )
 
 func GithubHook(w http.ResponseWriter, r *http.Request) {
@@ -19,7 +20,7 @@ func GithubHook(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	if "" == config.Cfg.WebHookSecret || "push" != r.Header.Get("x-github-event") {
+	if config.Cfg.WebHookSecret == "" || r.Header.Get("x-github-event") != "push" {
 		helper.SedResponse(w, "No Configuration WebHookSecret Or Not Pushing Events")
 		log.Println("No Configuration WebHookSecret Or Not Pushing Events")
 		return
@@ -48,6 +49,36 @@ func GithubHook(w http.ResponseWriter, r *http.Request) {
 	if sign != expectedHash {
 		helper.SedResponse(w, "WebHook err:Signature does not match")
 		log.Println("WebHook err:Signature does not match")
+		return
+	}
+
+	helper.SedResponse(w, "ok")
+
+	helper.UpdateArticle()
+}
+
+func GiteeHook(w http.ResponseWriter, r *http.Request) {
+
+	err := r.ParseForm()
+	if err != nil {
+		helper.SedResponse(w, err.Error())
+		return
+	}
+
+	if config.Cfg.WebHookSecret == "" {
+		helper.SedResponse(w, "No Configuration WebHookSecret ")
+		log.Println("No Configuration WebHookSecret")
+		return
+	}
+	if config.Cfg.WebHookSecret != r.Header.Get("X-Gitee-Token") {
+		helper.SedResponse(w, "Configuration WebHookSecret Is Wrong")
+		log.Println("Configuration WebHookSecret Is Wrong")
+		return
+	}
+
+	if r.Header.Get("X-Gitee-Event") != "Push Hook" {
+		helper.SedResponse(w, "No Push Events ")
+		log.Println("No Push Events ")
 		return
 	}
 

@@ -1,13 +1,14 @@
 package routes
 
 import (
+	"net/http"
+
 	"github.com/cjyzwg/forestblog/config"
 	"github.com/cjyzwg/forestblog/controller"
-	"net/http"
 )
 
-func initApiRoute()  {
+func initApiRoute() {
 
-	http.HandleFunc(config.Cfg.GitHookUrl, controller.GithubHook)
+	http.HandleFunc(config.Cfg.GitHookUrl, controller.GiteeHook)
 
 }

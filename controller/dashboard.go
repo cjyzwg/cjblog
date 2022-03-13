@@ -1,14 +1,15 @@
 package controller
 
 import (
+	"net/http"
+	"strconv"
+
 	"github.com/cjyzwg/forestblog/config"
 	"github.com/cjyzwg/forestblog/helper"
 	"github.com/cjyzwg/forestblog/service"
-	"net/http"
-	"strconv"
 )
 
-func Dashboard(w http.ResponseWriter, r *http.Request)  {
+func Dashboard(w http.ResponseWriter, r *http.Request) {
 
 	var dashboardMsg []string
 
@@ -21,13 +22,13 @@ func Dashboard(w http.ResponseWriter, r *http.Request)  {
 	index, err := strconv.Atoi(r.Form.Get("theme"))
 	if err == nil && index < len(config.Cfg.ThemeOption) {
 		service.SetThemeColor(index)
-		dashboardMsg = append(dashboardMsg,"颜色切换成功!")
+		dashboardMsg = append(dashboardMsg, "颜色切换成功!")
 	}
 
 	action := r.Form.Get("action")
-	if "updateArticle" == action {
+	if action == "updateArticle" {
 		helper.UpdateArticle()
-		dashboardMsg = append(dashboardMsg,"文章更新成功!")
+		dashboardMsg = append(dashboardMsg, "文章更新成功!")
 	}
 
 	template, err := helper.HtmlTemplate("dashboard")
@@ -38,9 +39,9 @@ func Dashboard(w http.ResponseWriter, r *http.Request)  {
 	}
 
 	err = template.Execute(w, map[string]interface{}{
-		"Title":  "控制台",
-		"Data":   map[string]interface{}{
-			"msg":dashboardMsg,
+		"Title": "控制台",
+		"Data": map[string]interface{}{
+			"msg": dashboardMsg,
 		},
 		"Config": config.Cfg,
 	})
