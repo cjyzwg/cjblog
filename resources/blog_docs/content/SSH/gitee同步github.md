@@ -66,7 +66,7 @@ jobs:
 
 **如果克隆的地址是github，则要执行此步**
 
-3.在对应的执行的项目目录下切换成gitee：
+3.在对应的执行的项目目录下切换成gitee：  
 
 > git remote set-url origin https://gitee.com/cjyzwg/cjblog.git
 
