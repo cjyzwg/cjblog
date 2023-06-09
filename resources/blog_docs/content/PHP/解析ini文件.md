@@ -1,5 +1,5 @@
 ---
-title:解析ini文件
+title: 解析ini文件
 categories:
   - PHP
 ---

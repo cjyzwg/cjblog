@@ -1,5 +1,5 @@
 ---
-title:SSH访问局域网网站
+title: SSH访问局域网网站
 categories:
   - SSH
 ---

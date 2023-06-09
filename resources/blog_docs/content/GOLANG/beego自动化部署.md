@@ -1,5 +1,5 @@
 ---
-title:beego自动化部署
+title: beego自动化部署
 categories:
   - GOLANG
 ---

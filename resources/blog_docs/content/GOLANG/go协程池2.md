@@ -1,5 +1,5 @@
 ---
-title:go协程池2
+title: go协程池2
 categories:
   - GOLANG
 ---

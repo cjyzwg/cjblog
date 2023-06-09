@@ -1,5 +1,5 @@
 ---
-title:laravel面试
+title: laravel面试
 categories:
   - PHP
 ---

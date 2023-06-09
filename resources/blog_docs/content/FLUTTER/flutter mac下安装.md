@@ -1,5 +1,5 @@
 ---
-title:flutter mac下安装
+title: flutter mac下安装
 categories:
   - FLUTTER
 ---

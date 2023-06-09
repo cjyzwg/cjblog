@@ -1,5 +1,5 @@
 ---
-title:mysqldump数据结构,并且主键重置为1
+title: mysqldump数据结构,并且主键重置为1
 categories:
   - MYSQL
 ---

@@ -1,5 +1,5 @@
 ---
-title:SSH添加阿里云秘钥
+title: SSH添加阿里云秘钥
 categories:
   - SSH
 ---

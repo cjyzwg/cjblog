@@ -1,5 +1,5 @@
 ---
-title:Openvpn
+title: Openvpn
 categories:
   - VPN
 ---

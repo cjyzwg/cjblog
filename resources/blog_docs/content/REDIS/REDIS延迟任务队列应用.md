@@ -1,5 +1,5 @@
 ---
-title:REDIS延迟任务队列应用
+title: REDIS延迟任务队列应用
 categories:
   - REDIS
 ---

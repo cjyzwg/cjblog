@@ -1,5 +1,5 @@
 ---
-title:dnsmasq配置局域网域名
+title: dnsmasq配置局域网域名
 categories:
   - DNSMASQ
 ---

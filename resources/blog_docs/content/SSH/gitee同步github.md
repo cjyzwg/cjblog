@@ -1,5 +1,5 @@
 ---
-title:gitee同步github
+title: gitee同步github
 categories:
   - SSH
 ---

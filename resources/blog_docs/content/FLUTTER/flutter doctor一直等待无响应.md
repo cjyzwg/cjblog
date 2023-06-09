@@ -1,5 +1,5 @@
 ---
-title:flutter doctor一直等待无响应
+title: flutter doctor一直等待无响应
 categories:
   - FLUTTER
 ---
