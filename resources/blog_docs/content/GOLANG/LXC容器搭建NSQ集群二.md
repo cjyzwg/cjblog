@@ -1,5 +1,6 @@
 ---
 title: LXC容器搭建NSQ集群二
+date: 2022-02-15 12:11:10
 categories:
   - GOLANG
 ---

@@ -1,5 +1,6 @@
 ---
 title: Openvpn
+date: 2021-11-19 20:31:30
 categories:
   - VPN
 ---

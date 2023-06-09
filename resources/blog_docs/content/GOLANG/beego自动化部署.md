@@ -1,5 +1,6 @@
 ---
 title: beego自动化部署
+date: 2022-06-02 20:20:11
 categories:
   - GOLANG
 ---

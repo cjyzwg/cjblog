@@ -1,5 +1,6 @@
 ---
 title: go_mod 翻墙问题
+date: 2022-05-28 11:22:33
 categories:
   - GOLANG
 ---

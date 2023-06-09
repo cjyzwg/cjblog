@@ -1,5 +1,6 @@
 ---
 title: mysqldump数据结构,并且主键重置为1
+date: 2020-05-08 13:15:27
 categories:
   - MYSQL
 ---

@@ -1,5 +1,6 @@
 ---
 title: flutter doctor一直等待无响应
+date: 2022-11-15 13:09:08
 categories:
   - FLUTTER
 ---
