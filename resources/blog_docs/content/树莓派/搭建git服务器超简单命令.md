@@ -1,4 +1,5 @@
 ---
+title:搭建git服务器超简单命令
 categories:
   - 树莓派
 ---

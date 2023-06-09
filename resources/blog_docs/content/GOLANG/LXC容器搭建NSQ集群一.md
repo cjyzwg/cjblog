@@ -1,4 +1,5 @@
 ---
+title:LXC容器搭建NSQ集群一
 categories:
   - GOLANG
 ---

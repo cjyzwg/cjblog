@@ -1,4 +1,5 @@
 ---
+title:mysql计算周报表
 categories:
   - MYSQL
 ---

@@ -1,4 +1,5 @@
 ---
+title:go_mod 翻墙问题
 categories:
   - GOLANG
 ---

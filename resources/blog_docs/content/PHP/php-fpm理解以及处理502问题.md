@@ -1,4 +1,5 @@
 ---
+title:php-fpm理解以及处理502问题
 categories:
   - PHP
 ---

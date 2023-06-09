@@ -1,4 +1,5 @@
 ---
+title:REDIS安装及应用
 categories:
   - REDIS
 ---

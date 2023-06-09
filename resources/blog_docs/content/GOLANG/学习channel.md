@@ -1,4 +1,5 @@
 ---
+title:学习channel
 categories:
   - GOLANG
 ---
