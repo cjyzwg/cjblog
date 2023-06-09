@@ -1,3 +1,7 @@
+---
+categories:
+  - GOLANG
+---
 ```go
 package main
 import(

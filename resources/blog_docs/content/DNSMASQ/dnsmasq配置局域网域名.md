@@ -1,3 +1,7 @@
+---
+categories:
+  - DNSMASQ
+---
 ### 安装dnsmasq
 - apt-get install -y dnsmasq
 #### /etc/dnsmasq.conf

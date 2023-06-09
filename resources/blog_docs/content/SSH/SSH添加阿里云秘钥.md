@@ -1,3 +1,7 @@
+---
+categories:
+  - SSH
+---
 ### 阿里云服务器添加秘钥
 1.登录控制台，创建秘钥对，并下载为a.pem  
 2.ssh-keygen -y -f a.pem会返回ssh-rsa  

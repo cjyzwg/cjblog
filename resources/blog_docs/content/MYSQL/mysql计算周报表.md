@@ -1,3 +1,7 @@
+---
+categories:
+  - MYSQL
+---
 #### 到年底了，都需要统计下报表，mysql统计的时候有点问题，尤其是到12-31 到01-01 有问题
 ```php
 select location as locationid

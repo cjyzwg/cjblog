@@ -1,3 +1,7 @@
+---
+categories:
+  - FLUTTER
+---
 #### 参考资料
 **https://ninghao.net/video/6364**  
 **https://flutterchina.club/setup-macos/**

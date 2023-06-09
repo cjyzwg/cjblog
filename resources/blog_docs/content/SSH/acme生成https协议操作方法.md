@@ -1,3 +1,7 @@
+---
+categories:
+  - SSH
+---
 ### 利用acme 生成https协议
 
 ##### 手动https

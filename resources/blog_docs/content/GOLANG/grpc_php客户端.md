@@ -1,3 +1,7 @@
+---
+categories:
+  - GOLANG
+---
 # grpc php client 
 **服务端取的是https://www.jianshu.com/p/7fe7a8507745 案例**  
 

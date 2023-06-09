@@ -1,3 +1,7 @@
+---
+categories:
+  - REDIS
+---
 ### Redis安装
 - pecl install redis
 - nano /etc/php/7.0/mods-available/redis.ini

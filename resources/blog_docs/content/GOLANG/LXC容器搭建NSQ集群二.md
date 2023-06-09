@@ -1,3 +1,7 @@
+---
+categories:
+  - GOLANG
+---
 ### LXC 容器搭建nsq集群
 #### go-nsq
 - 生产者角色和消费者角色

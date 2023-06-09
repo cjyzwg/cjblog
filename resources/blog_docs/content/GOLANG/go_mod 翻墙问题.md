@@ -1,3 +1,7 @@
+---
+categories:
+  - GOLANG
+---
 ##### 只需要在go.mod 后面假如replace即可解决，加完记得go mod tidy 
 ```go
 replace (

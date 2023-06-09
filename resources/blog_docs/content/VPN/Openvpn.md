@@ -1,3 +1,7 @@
+---
+categories:
+  - VPN
+---
 ### 搭建OpenVPN （目的是用本地的mac连上公司的windows电脑）
 
 1.wget https://git.io/vpn -O openvpn-install.sh && bash openvpn-install.sh

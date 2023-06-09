@@ -1,3 +1,7 @@
+---
+categories:
+  - PHP
+---
 ### a=none 后面为none解析不出来
 
 sample.ini

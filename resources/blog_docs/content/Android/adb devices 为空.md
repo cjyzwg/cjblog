@@ -1,3 +1,7 @@
+---
+categories:
+  - Android
+---
 
 ### Adb devices 显示为空？
 

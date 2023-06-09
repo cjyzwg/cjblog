@@ -1,3 +1,7 @@
+---
+categories:
+  - GOLANG
+---
 ### LXC 容器搭建nsq集群
 - [原文链接](http://ddrv.cn/a/291527)  
 

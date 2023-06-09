@@ -1,3 +1,7 @@
+---
+categories:
+  - GOLANG
+---
 ### LXC 容器搭建nsq集群
 - 阿里云服务器cpu飙到100，登不上去，好不容易登上去之后打开lxc容器内发现连不上网
 注意lxc的几个目录：/etc/default/lxc 

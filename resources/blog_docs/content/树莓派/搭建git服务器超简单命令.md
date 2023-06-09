@@ -1,3 +1,7 @@
+---
+categories:
+  - 树莓派
+---
 ### 搭建git私有服务器命令
 #### 服务器：
 1.sudo apt-get install git-core  

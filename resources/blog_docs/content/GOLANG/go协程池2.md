@@ -1,3 +1,7 @@
+---
+categories:
+  - GOLANG
+---
 #### go协程池改编
 -基于[<font color=#0099ff>go协程池</font>](http://blog.hexiefamily.xin/article?path=%2fGOLANG%2fgo%e5%8d%8f%e7%a8%8b%e6%b1%a0.md)  
 

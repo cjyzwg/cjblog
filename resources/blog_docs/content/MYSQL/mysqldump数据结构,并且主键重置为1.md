@@ -1,3 +1,7 @@
+---
+categories:
+  - MYSQL
+---
 - mysqldump
 ```shell
 mysqldump -u root -pxxx123456 -d testa  
