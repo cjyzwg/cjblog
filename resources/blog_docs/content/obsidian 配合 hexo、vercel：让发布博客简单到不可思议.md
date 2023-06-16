@@ -1,16 +1,16 @@
 ---
 title: obsidian 配合 hexo、vercel：让发布博客简单到不可思议
 tags: [obsidian,博客发布,'#Fleeting_N']
-date: 2023-06-16 14:33:40
+date: 2023-06-16 15:18:14
 draft: true
 hideInList: false
 isTop: false
-feature:
-categories: [obsidian,博客]
+published: false
+categories: [obsidian]
 ---
 
-
----
+------
+ 
 
 ![image.png](https://s2.loli.net/2023/03/18/WzmvgDcoRysPAhi.png)
 
@@ -32,8 +32,6 @@ categories: [obsidian,博客]
 这个过程是非常麻烦的。
 
 今天看到木木的博客中提到的 Cloudflare，就想着改造一下。改造过程如下。
-
----
 
 ### 使用到的 obsidian 插件
 
