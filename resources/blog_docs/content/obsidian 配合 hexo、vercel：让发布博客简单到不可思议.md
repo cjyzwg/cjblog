@@ -5,7 +5,7 @@ date: 2023-06-16 15:18:14
 draft: true
 hideInList: false
 isTop: false
-published: false
+published: true
 categories: [obsidian]
 ---
 
