@@ -112,3 +112,4 @@ published 字段是发布，默认设置为false，草稿。等到文章写完�
 +   [Hugo 博客写作最佳实践](https://blog.zhangyingwei.com/posts/2022m4d11h19m42s28/)
 +   [如何将域名托管到cloudflare](https://www.back2me.cn/skills/cloudflare.html)
 +   [hexo部署vercel](https://hexo.io/zh-cn/docs/one-command-deployment#Vercel)
++   [莉莉蒙的少数派链接](https://sspai.com/u/4b8zstxp/updates)
