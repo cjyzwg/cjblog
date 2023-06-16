@@ -7,7 +7,7 @@ draft: true
 hideInList: false
 isTop: false
 feature:
-categories: [obsidian]
+categories: [obsidian,博客]
 ---
 
 
