@@ -16,6 +16,12 @@ categories: [obsidian]
 
 自从我更换博客系统到 hugo 之后，我越来越少发博客了。原因除了最近写得少之外，就是发布起来不如之前使用 Gridea 那么方便了。
 
+结合我自己的博客发布流程位：
+1. obsidian创建文章并写作
+2. 利用自己写的半插件使用快捷键`Alt+G`键同步博客文章，以及自己服务器上的博客文章
+3. vercel和cloudflare自动拉取github仓库
+4. 访问https://blog.asan123.top 和https://blog.hexiefamily.xin 都可以访问的到
+
 参考了几篇文章，现在的发布流程为：
 
 1.  obsidian 创建文章并写作。
@@ -93,6 +99,7 @@ published 字段是发布，默认设置为false，草稿。等到文章写完�
 ![image.png](https://s2.loli.net/2023/03/11/mToq84ZpMhFjyGN.png)
 
 以上，所有设置都已完成。
+当然用vercel部署是一样的。
 
 现在我要发布一篇新博客时，只要在 obsidian 中打开 hugo博客的这个库，然后使用 quickadd 新建一篇博客，写上内容，然后把yaml 中的 `published` 字段值改为 `true` 即可,✨一定要记得改，否则他就不发布了，（从草稿改为发布）。等待3分钟后 obsidian-git 插件自动同步到 github，博客就自动更新发布好了。
 
