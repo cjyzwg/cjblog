@@ -321,3 +321,5 @@ translateString(termList).then(val => {
 好了小伙伴们，现在我们打开 `replaceDesUtils.ts` 看看效果哈。
 
 后面的文章会用到 `express` 进行文本操作，可以上传自定义的文件进行翻译。
+
+[引用的文章](https://zhuanlan.zhihu.com/p/101965933)
