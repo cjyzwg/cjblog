@@ -9,43 +9,19 @@ published: true
 categories: [obsidian]
 ---
 
-# 目录
+# 3.3 插件开发常用api
 
-- [vault](#vault)
-    - [获取库的基础路径](#获取库的基础路径)
-    - [获取全局设置](#获取全局设置)
-- [workspace](#workspace)
-    - [获取当前编辑器](#获取当前编辑器)
-- [editor](#editor)
-    - [获取文件内容](#获取文件内容)
-    - [设置文件内容](#设置文件内容)
-    - [获取某一行内容](#获取某一行内容)
-    - [设置某一行内容](#设置某一行内容)
-    - [获取当前文件](#获取当前文件)
-    - [获取光标位置](#获取光标位置)
-    - [设置光标](#设置光标)
-    - [获取滚动位置](#获取滚动位置)
-    - [设置滚动位置](#设置滚动位置)
-    - [获取自定义 frontmatter](#获取自定义-frontmatter)
-    - [获取选中的文字](#获取选中的文字)
-    - [发送通知](#发送通知)
-- [plugin](#plugin)
-    - [生命周期](#生命周期)
-    - [设置快捷键](#设置快捷键)
-    - [设置文件菜单](#设置文件菜单)
-    - [加载设置](#加载设置)
-    - [保存设置](#保存设置)
-- [设置页面](#设置页面)
-    - [基础](#基础)
-    - [添加文字输入控件](#添加文字输入控件)
-    - [添加开关控件](#添加开关控件)
-- [添加按钮控件](#添加按钮控件)
-- [其他](#其他)
-    - [网络请求](#网络请求)
+作者：阿三
+<br/>博客：[https://blog.asan123.top](https://blog.asan123.top)
+<br/>公众号：阿三爱吃瓜
 
-# vault
+>持续不断记录、整理、分享，让自己和他人一起成长！😊
 
-## 获取库的基础路径
+
+
+## vault
+
+### 获取库的基础路径
 
 ```ts
 import {
@@ -57,15 +33,15 @@ const basePath = (
         ).getBasePath()
 ```
 
-## 获取全局设置
+### 获取全局设置
 
 ```ts
 const config = this.app.vault.config
 ```
 
-# workspace
+## workspace
 
-## 获取当前编辑器
+### 获取当前编辑器
 
 ```ts
 import { MarkdownView } from 'obsidian';
@@ -82,16 +58,16 @@ getEditor() {
 
 ```
 
-# editor
+## editor
 
-## 获取文件内容
+### 获取文件内容
 
 ```ts
 const editor = this.getEditor()
 const content = editor.getValue()
 ```
 
-## 设置文件内容
+### 设置文件内容
 
 ```ts
 const editor = this.getEditor()
@@ -99,7 +75,7 @@ const editor = this.getEditor()
 const content = editor.setValue("string")
 ```
 
-## 获取某一行内容
+### 获取某一行内容
 
 ```ts
 const editor = this.getEditor()
@@ -107,7 +83,7 @@ const editor = this.getEditor()
 const content = editor.getLine(line)
 ```
 
-## 设置某一行内容
+### 设置某一行内容
 
 ```ts
 const editor = this.getEditor()
@@ -115,20 +91,20 @@ const editor = this.getEditor()
 const content = editor.setLine(line, "string")
 ```
 
-## 获取当前文件
+### 获取当前文件
 
 ```ts
 const file = this.app.workspace.getActiveFile();
 ```
 
-## 获取光标位置
+### 获取光标位置
 
 ```ts
 const editor = this.getEditor()
 const cursor = editor.getCursor()
 ```
 
-## 设置光标
+### 设置光标
 
 ```ts
 const editor = this.getEditor()
@@ -136,14 +112,14 @@ const editor = this.getEditor()
 editor.setCursor({line: 'number', ch: 'number'});
 ```
 
-## 获取滚动位置
+### 获取滚动位置
 
 ```ts
 const editor = this.getEditor()
 const { left, top } = editor.getScrollInfo();
 ```
 
-## 设置滚动位置
+### 设置滚动位置
 
 ```ts
 const editor = this.getEditor()
@@ -151,7 +127,7 @@ const editor = this.getEditor()
 editor.scrollTo(left, top);
 ```
 
-## 获取自定义 frontmatter
+### 获取自定义 frontmatter
 
 ```ts
   getFrontmatterValue(key: string, defaultValue: any = undefined) {
@@ -170,7 +146,7 @@ editor.scrollTo(left, top);
   }
 ```
 
-## 获取选中的文字
+### 获取选中的文字
 
 ```ts
   getSelectedText(editor: any) {
@@ -206,7 +182,7 @@ editor.scrollTo(left, top);
   }
 ```
 
-## 发送通知
+### 发送通知
 
 ```ts
 import {
@@ -217,9 +193,9 @@ import {
 new Notice("message", 1000);
 ```
 
-# plugin
+## plugin
 
-## 生命周期
+### 生命周期
 
 ```ts
 // 挂载时的钩子，一般用于加载设置，设置命令行等初始化操作
@@ -229,7 +205,7 @@ async onload(){}
 async onunload(){}
 ```
 
-## 设置快捷键
+### 设置快捷键
 
 ```ts
 this.addCommand({
@@ -241,7 +217,7 @@ this.addCommand({
 });
 ```
 
-## 设置文件菜单
+### 设置文件菜单
 
 ```ts
 this.app.workspace.on(
@@ -256,7 +232,7 @@ this.app.workspace.on(
 );
 ```
 
-## 加载设置
+### 加载设置
 
 ```ts
 async loadSettings() {
@@ -265,7 +241,7 @@ async loadSettings() {
 }
 ```
 
-## 保存设置
+### 保存设置
 
 ```ts
 async saveSettings() {
@@ -273,9 +249,9 @@ async saveSettings() {
 }
 ```
 
-# 设置页面
+## 设置页面
 
-## 基础
+### 基础
 
 ```ts
 class SampleSettingTab extends PluginSettingTab {
@@ -309,7 +285,7 @@ class SampleSettingTab extends PluginSettingTab {
 }
 ```
 
-## 添加文字输入控件
+### 添加文字输入控件
 
 ```ts
 new Setting(containerEl)
@@ -325,7 +301,7 @@ new Setting(containerEl)
         }));
 ```
 
-## 添加开关控件
+### 添加开关控件
 
 ```ts
 new Setting(containerEl)
@@ -343,7 +319,7 @@ new Setting(containerEl)
   );
 ```
 
-# 添加按钮控件
+## 添加按钮控件
 
 ```ts
     new Setting(containerEl).setName("Setting #1").addButton(cb => {
@@ -355,8 +331,8 @@ new Setting(containerEl)
     });
 ```
 
-# 其他
+## 其他
 
-## 网络请求
+### 网络请求
 
 可以安装 `node-fetch` 进行请求
