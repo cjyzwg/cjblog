@@ -1,8 +1,9 @@
 package models
 
 import (
-	"github.com/cjyzwg/forestblog/config"
 	"time"
+
+	"github.com/cjyzwg/forestblog/config"
 )
 
 type Tag string
@@ -33,7 +34,7 @@ type MarkdownPagination struct {
 }
 
 type Category struct {
-	Name            string
+	Name             string
 	Path             string
 	Number           int
 	MarkdownFileList MarkdownList
@@ -52,7 +53,7 @@ func (t *Time) UnmarshalJSON(b []byte) error {
 
 func (t Time) MarshalJSON() ([]byte, error) {
 
-	return []byte(t.Format(`"`+config.Cfg.TimeLayout+`"`)), nil
+	return []byte(t.Format(`"` + config.Cfg.TimeLayout + `"`)), nil
 }
 
 func (t Time) Format(layout string) string {

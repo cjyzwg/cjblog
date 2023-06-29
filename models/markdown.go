@@ -1,6 +1,7 @@
 package models
 
 import (
+	"bufio"
 	"bytes"
 	"crypto/md5"
 	"encoding/json"
@@ -10,8 +11,10 @@ import (
 	"os"
 	"sort"
 	"strings"
+	"time"
 
 	"github.com/cjyzwg/forestblog/config"
+	"github.com/go-yaml/yaml"
 )
 
 func readMarkdown(path string) (Markdown, MarkdownDetails, error) {
@@ -45,14 +48,15 @@ func readMarkdown(path string) (Markdown, MarkdownDetails, error) {
 		return content, fullContent, mdErr
 	}
 	markdown = bytes.TrimSpace(markdown)
-
+	dateString, body, _ := ParseMetaData(markdown)
+	date, _ := time.ParseInLocation("2006-01-02 15:04:05", dateString, time.Local)
 	content.Path = path
 	content.Category = categoryName
 	content.Title = markdownFile.Name()
-	content.Date = Time(markdownFile.ModTime())
+	content.Date = Time(date)
 
 	fullContent.Markdown = content
-	fullContent.Body = string(markdown)
+	fullContent.Body = string(body)
 
 	if !bytes.HasPrefix(markdown, []byte("```json")) {
 		content.Description = cropDesc(markdown)
@@ -86,7 +90,7 @@ func cropDesc(c []byte) string {
 	return string(content[0:config.Cfg.DescriptionLen])
 }
 
-//读取路径下的md文件的部分信息json
+// 读取路径下的md文件的部分信息json
 func GetMarkdown(path string) (Markdown, error) {
 
 	content, _, err := readMarkdown(path)
@@ -97,7 +101,7 @@ func GetMarkdown(path string) (Markdown, error) {
 	return content, nil
 }
 
-//读取路径下的md文件完整信息
+// 读取路径下的md文件完整信息
 func GetMarkdownDetails(path string) (MarkdownDetails, error) {
 
 	_, content, err := readMarkdown(path)
@@ -109,7 +113,7 @@ func GetMarkdownDetails(path string) (MarkdownDetails, error) {
 	return content, nil
 }
 
-//递归获取md文件信息
+// 递归获取md文件信息
 func getMarkdownList(dir string) (MarkdownList, error) {
 	//path=>categoryName
 	var fullDir string
@@ -219,4 +223,54 @@ func ReadMarkdownDir() ([]string, error) {
 	}
 	// fmt.Println(list)
 	return list, err
+}
+
+type Meta struct {
+	Title      string
+	Date       string
+	Tags       []string
+	Categories []string
+}
+
+func ParseMetaData(fileData []byte) (string, string, error) {
+	buf := bufio.NewReader(bytes.NewReader(fileData))
+	metaData := []byte{}
+	content := []byte{}
+	metaStart := false
+	metaFinished := false
+	// get the data between the line only have "---"
+	for {
+		line, isPrefix, lineErr := buf.ReadLine()
+		if lineErr != nil {
+			break
+		}
+		for _, s := range []string{"---", "--- ", " --- ", " ---", "----"} {
+			if string(line) == s {
+				if metaStart {
+					metaFinished = true
+
+				}
+				metaStart = true
+			}
+		}
+
+		if !isPrefix {
+			line = append(line, []byte("\n")...)
+		}
+
+		if metaStart && !metaFinished {
+			metaData = append(metaData, line...)
+		}
+
+		if metaFinished {
+			content = append(content, line...)
+		}
+	}
+	meta := &Meta{}
+	err := yaml.Unmarshal(metaData, meta)
+	if err != nil {
+		return "", "", err
+	}
+
+	return meta.Date, string(content), nil
 }
