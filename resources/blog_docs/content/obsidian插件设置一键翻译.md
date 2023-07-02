@@ -10,17 +10,14 @@ categories: [obsidian]
 ---
 
 作者：阿三 
-博客：[https://blog.asan123.top](https://blog.asan123.top) 
+博客：[Nockygo](https://blog.asan123.top) 
 公众号：阿三爱吃瓜 
 
 > 持续不断记录、整理、分享，让自己和他人一起成长！😊
 
-
-
 ## 前言
 
 自从用上了Obsidian，就爱上了它，不仅仅是因为它免费，更重要的是它的插件生态很nice，作为一名野生程序猿，流畅不卡是标配，开源那更是极好的，一个好的插件能让我折腾很久，而且还允许我自行去编写插件，一个不满意我就可以去魔改源码😄。
- 
 
 ## 插件设置英文看着头疼？
 
@@ -41,6 +38,7 @@ categories: [obsidian]
 ### 2.translate插件设置
 
 打开obsidian中的translate插件，端口可以不用动，测试连接下，如果成功，那么就可以下一步操作了，如果失败，可以联系我
+
 ![](https://weimgpub.oss-cn-hangzhou.aliyuncs.com/img/202306252336566.png)
 
 ### 3. 一键翻译
@@ -61,7 +59,6 @@ categories: [obsidian]
 
 ![](https://weimgpub.oss-cn-hangzhou.aliyuncs.com/img/202306252337973.png)
 
-
 同样打开dataview，英文又神奇的回来了😁😁
 
 ![](https://weimgpub.oss-cn-hangzhou.aliyuncs.com/img/202306252337119.png)
@@ -71,7 +68,5 @@ categories: [obsidian]
 插件开发的时间消耗的不是很长，翻译的效果也达到了预期的目的，当然后续如果可以接成百度翻译也当然可以的，同时如果能够翻译成多国语言，那岂不是更完美，这个是后话，主要还得看看空闲的时间咯！
 
 如果你需要这个插件，找到「阿三爱吃瓜」公众号发送“translate”，即可获得。
-
-
 
  

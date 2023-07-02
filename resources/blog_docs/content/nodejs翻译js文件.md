@@ -9,9 +9,9 @@ published: true
 categories: [obsidian]
 ---
 
-作者：阿三 
-博客：[https://blog.asan123.top](https://blog.asan123.top) 
-公众号：阿三爱吃瓜 
+- 作者：阿三
+- 博客：[https://blog.asan123.top](https://blog.asan123.top)
+- 公众号：阿三爱吃瓜
 
 > 持续不断记录、整理、分享，让自己和他人一起成长！😊
 
