@@ -72,13 +72,17 @@ categories: [{{VALUE:分类？}}]
 
 published 字段是发布，默认设置为false，草稿。等到文章写完并修改无误后，再修改为 true 进行发布。
 
-4.  设置quickadd 命令： ![image.png](https://s2.loli.net/2023/03/11/Z9BDtVHJr2uaIyq.png)
+4.  设置quickadd 命令：
+
+![image.png](https://s2.loli.net/2023/03/11/Z9BDtVHJr2uaIyq.png)
 
 #### obsidian-git
 
 用于自动备份文件到 github。
 
-插件设置修改如下： ![image.png](https://s2.loli.net/2023/03/11/cxTJiutPEfkHFW8.png)
+插件设置修改如下：
+
+![image.png](https://s2.loli.net/2023/03/11/cxTJiutPEfkHFW8.png)
 
 ### 启用 Cloudflare
 
@@ -107,9 +111,9 @@ published 字段是发布，默认设置为false，草稿。等到文章写完�
 
 ### 参考
 
-+   木木木木木： [Hugo With Obsidian](https://immmmm.com/hugo-with-obsidian/)
-+   木木木木木： [Hi , Cloudflare Pages](https://immmmm.com/hi-cloudflare/)
-+   [Hugo 博客写作最佳实践](https://blog.zhangyingwei.com/posts/2022m4d11h19m42s28/)
-+   [如何将域名托管到cloudflare](https://www.back2me.cn/skills/cloudflare.html)
-+   [hexo部署vercel](https://hexo.io/zh-cn/docs/one-command-deployment#Vercel)
-+   [莉莉蒙的少数派链接](https://sspai.com/u/4b8zstxp/updates)
+[Hugo With Obsidian](https://immmmm.com/hugo-with-obsidian/)
+[Hi , Cloudflare Pages](https://immmmm.com/hi-cloudflare/)
+[Hugo 博客写作最佳实践](https://blog.zhangyingwei.com/posts/2022m4d11h19m42s28/)
+[如何将域名托管到cloudflare](https://www.back2me.cn/skills/cloudflare.html)
+[hexo部署vercel](https://hexo.io/zh-cn/docs/one-command-deployment#Vercel)
+[莉莉蒙的少数派链接](https://sspai.com/u/4b8zstxp/updates)
