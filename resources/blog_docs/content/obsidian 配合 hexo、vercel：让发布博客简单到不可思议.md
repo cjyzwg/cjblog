@@ -10,34 +10,22 @@ categories: [obsidian]
 ---
 
 ------
- 
+
 
 ![image.png](https://s2.loli.net/2023/03/18/WzmvgDcoRysPAhi.png)
 
-自从我更换博客系统到 hugo 之后，我越来越少发博客了。原因除了最近写得少之外，就是发布起来不如之前使用 Gridea 那么方便了。
+自从我使用obsidian之后，其实越来越少发博客了。原因除了写的少之外，就是我的博客和知识管理系统分属两个地儿，每次都容易忘记去写。
 
 结合我自己的博客发布流程位：
 1. obsidian创建文章并写作
 2. 利用自己写的半插件使用快捷键`Alt+G`键同步博客文章，以及自己服务器上的博客文章
 3. vercel和cloudflare自动拉取github仓库
-4. 访问https://blog.asan123.top 和https://blog.hexiefamily.xin 都可以访问的到
+4. 访问https://blog.asan123.top 和https://hexo.hexiefamily.xin 都可以访问的到
+5. 同时博客小程序也可以访问的到
 
-参考了几篇文章，现在的发布流程为：
+整体的过程就变得非常简单化，我只需要几个快捷键就可以搞定了。
 
-1.  obsidian 创建文章并写作。
-2.  利用 obsidian-git 插件将文件自动同步到 github
-3.  cloudflare 自动拉取 github 仓库，并自动构建为hugo 项目，相当于省略了本地执行 `hugo -D` 的过程。
-
-旧的发布方式为：
-
-1.  obsidian中写作文章
-2.  复制文件到 hugo 项目的 content/posts 文件夹
-3.  然后执行 hugo -D 命令，生成静态文件
-4.  再到public 文件夹下使用 git 将已生成的静态文件上传到 github。github page 作为博客展示。
-
-这个过程是非常麻烦的。
-
-今天看到木木的博客中提到的 Cloudflare，就想着改造一下。改造过程如下。
+使用过程如下。
 
 ### 使用到的 obsidian 插件
 
@@ -84,11 +72,12 @@ published 字段是发布，默认设置为false，草稿。等到文章写完�
 
 ![image.png](https://s2.loli.net/2023/03/11/cxTJiutPEfkHFW8.png)
 
+`注意`：自动备份是个好东西，但是如果手机端也有的话，有可能会造成文件需要合并的问题，所以我是快捷键分开处理。
 ### 启用 Cloudflare
 
 打开 [Cloudflare Dash](https://dash.cloudflare.com/) 导航栏 `Pages` ，点 `创建项目`，授权 Github 项目，选择博客所在仓库，选择正确的分支。
 
-添加环境变量，指定高版本 `HUGO_VERSION` 为 `0.92.0`
+添加环境变量，指定高版本 `HEXO_VERSION`
 
 然后部署即可。
 
