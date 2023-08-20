@@ -1,7 +1,7 @@
 ---
 title: obsidian设置一键翻译插件
 tags: [obsidian,'#Fleeting_N']
-date: 2023-06-25 22:40:16
+date: 2023-08-21 22:40:16
 draft: true
 hideInList: false
 isTop: false
