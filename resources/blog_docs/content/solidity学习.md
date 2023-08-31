@@ -290,4 +290,83 @@ contract ConstantImmutable{
 
 ```ts
 
+// SPDX-License-Identifier: GPL-3.0
+
+pragma solidity >=0.7.0 <0.9.0;
+contract MappingExample{
+    mapping (address => uint) account;
+    function get(address _address) public view returns (uint){
+        return account[_address];
+    }
+    function set(address _address,uint _balance) public {
+        account[_address] = _balance;
+    }
+    function remove(address _address) public {
+        delete  account[_address];
+    }
+}
+
 ```
+提到了mapping嵌套，具体还得再查下，但是mapping嵌套我理解上是二维数组类型的。
+
+### ERC20代币的介绍
+
+使用openZeppelin 实现
+
+### 数组应用
+
+```ts
+
+// SPDX-License-Identifier: GPL-3.0
+
+pragma solidity >=0.7.0 <0.9.0;
+contract ArrayExample{
+    uint[] iArray;
+    uint[] iArray2 = [1,2,3];
+    uint[3] iArray3;
+    function getArray() public  view returns (uint[] memory){
+        return iArray2;
+    }
+    function getArrayByIndex(uint _i) public  view returns (uint) {
+        return iArray2[_i];
+    }
+    function getLength() public view returns (uint){
+        return iArray3.length;
+    }
+    function push(uint _i) public {
+        iArray2.push(_i);
+    }
+    function pop() public {
+        iArray2.pop();
+    }
+    function deleteByIndex(uint _i) public {
+        delete iArray2[_i];
+    }
+}
+
+```
+
+
+### imort引入文件应用
+
+```ts
+
+// SPDX-License-Identifier: GPL-3.0
+pragma solidity >=0.7.0 <0.9.0;
+
+import "./13_import_1.sol";
+//引入也可以引入外部链接比如
+//import "https://github.com/13_import_1.sol";
+contract ImportExample2{
+    ImportExample importExample = new ImportExample();
+    function getAge() public view returns (uint) {
+        return importExample.age();
+    }
+    function getName() public view returns (string memory){
+        return importExample.getName();
+    }
+}
+
+```
+
+
