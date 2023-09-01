@@ -689,3 +689,47 @@ contract Proxy {
 
 ```
 
+### 多态继承
+
+当有覆写父类相同的方法时候，父类加virtual 子类加overwrite
+```ts
+
+// SPDX-License-Identifier: GPL-3.0
+pragma solidity >=0.7.0 <0.9.0;
+contract A {
+
+    function getName() public pure virtual returns (string memory) {
+        return "A";
+    }
+}
+
+contract B is A {
+    function getAName() public pure  returns (string memory){
+        return super.getName();
+    }
+
+    function getName() public pure virtual  override  returns (string memory) {
+        return "B";
+    }
+}
+
+contract C is A {
+    function getCName() public pure  returns (string memory){
+        return super.getName();
+    }
+
+    function getName() public pure virtual override  returns (string memory) {
+        return "C";
+    }
+}
+
+contract BC is B,C {
+    function getBCName() public pure returns (string memory){
+        return "BC";
+    }
+    function getName() public pure override(B,C)  returns (string memory) {
+        return  super.getName();
+    }
+}
+
+```
