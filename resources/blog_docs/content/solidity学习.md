@@ -477,7 +477,215 @@ contract DEX{
     function getOwnerBalance() public view returns (uint256) {
         return token.balanceOf(msg.sender);
     }
-
 }
 
 ```
+
+### openzeppelin 合约
+
+铸币合约
+
+```ts
+
+// SPDX-License-Identifier: GPL-3.0
+pragma solidity >=0.7.0 <0.9.0;
+import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
+contract ThinkingChainToken is ERC20 {
+    constructor() ERC20("ThinkingChain","TKC") {
+        _mint(msg.sender, 1000 * 10 ** decimals());
+    }
+}
+
+```
+
+接受代币的合约
+
+```ts
+
+// SPDX-License-Identifier: GPL-3.0
+pragma solidity >=0.7.0 <0.9.0;
+import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
+contract ReciveTokenContract{
+
+    IERC20 myToken;
+    constructor(address _tokenAddress) {
+        myToken = IERC20(_tokenAddress);
+    }
+    function transferFrom(uint _amount) public {
+        myToken.transferFrom(msg.sender,address(this),_amount);
+    }
+
+    function getBalance(address _address) public  view returns(uint) {
+        return myToken.balanceOf(_address);
+    }
+}
+
+```
+
+### interface 接口应用
+
+先部署Employee 合约 再部署company合约
+```ts
+
+// SPDX-License-Identifier: GPL-3.0
+pragma solidity >=0.7.0 <0.9.0;
+interface IEmployee {
+    
+    function setName(string memory _name) external ;
+    function getName() external view returns (string memory);
+
+}
+
+contract Employee is IEmployee{
+    string private  name;
+    function setName(string memory _name) public override {
+        name = _name;
+    }
+    function getName() public override view returns (string memory){
+        return name;
+    }
+
+}
+
+contract Company{
+    IEmployee employee;
+    constructor(address _address) {
+        employee = IEmployee(_address);
+    }
+    function setName(string memory _name) public  {
+        employee.setName(_name);
+    }
+    function getName() public  view returns (string memory){
+        return employee.getName();
+    }
+}
+
+```
+
+### Library应用
+
+使用类库的时候是_a.add(_b) 不是用safemath.add(_a,_b)
+
+```ts
+
+// SPDX-License-Identifier: GPL-3.0
+pragma solidity >=0.7.0 <0.9.0;
+library SafeMath {
+    function mul(uint256 a, uint256 b) internal pure returns (uint256) {
+        if (a == 0) {
+            return 0;
+        }
+
+        uint256 c = a * b;
+        require(c / a == b, "SafeMath: multiplication overflow");
+
+        return c;
+    }
+
+    function div(uint256 a, uint256 b) internal pure returns (uint256) {
+        require(b > 0, "SafeMath: division by zero");
+        uint256 c = a / b;
+        return c;
+    }
+
+    function sub(uint256 a, uint256 b) public  pure returns (uint256) {
+        require(b <= a, "SafeMath: subtraction overflow");
+        uint256 c = a - b;
+
+        return c;
+    }
+    function add(uint256 a, uint256 b) public pure returns (uint256) {
+        uint256 c = a + b;
+        require(c >= a, "SafeMath: addition overflow");
+
+        return c;
+    }
+    function mod(uint256 a, uint256 b) internal pure returns (uint256) {
+        require(b != 0, "SafeMath: modulo by zero");
+        return a % b;
+    }
+}
+
+contract Example{
+    using SafeMath for uint256;
+    function doAdd(uint256 _a,uint256 _b) public pure returns(uint256){
+        return _a.add(_b);
+    }
+    function doSub(uint256 _a,uint256 _b) public pure returns(uint256){
+        return _a.sub(_b);
+    }
+    function doAddMore(uint256 _a,uint256 _b,uint256 _c) public pure returns (uint256) {
+
+return _a.addMore(_b,_c);
+
+}
+}
+
+```
+### 代理合约
+
+ 用于智能合约的升级
+
+```ts
+//logic.sol
+
+// SPDX-License-Identifier: GPL-3.0
+pragma solidity >=0.7.0 <0.9.0;
+contract Logic {
+    uint private number;
+    function setNumber(uint _number) public {
+        number = _number+1;
+    }
+    function getNumber() public view returns (uint){
+        return number;
+    }
+}
+
+```
+
+
+```ts
+//logic2.sol
+
+// SPDX-License-Identifier: GPL-3.0
+pragma solidity >=0.7.0 <0.9.0;
+contract Logic2 {
+    uint private number;
+    function setNumber(uint _number) public {
+        number = _number+2;
+    }
+    function getNumber() public view returns (uint){
+        return number;
+    }
+}
+
+```
+
+```ts
+//Proxy.sol 代理合约设置借口
+
+// SPDX-License-Identifier: GPL-3.0
+pragma solidity >=0.7.0 <0.9.0;
+interface ILogic {
+    function setNumber(uint _number) external ;
+    function getNumber() external view returns(uint); 
+}
+
+contract Proxy {
+    ILogic public logic;
+    function setLogicAddress(address _logicAddress) public {
+        logic = ILogic(_logicAddress);
+    }
+    function getLogicAddress() public view returns (address){
+        return address(logic);
+    }
+    function setNumber(uint _number) public {
+        logic.setNumber(_number);
+    }
+    function getNumber() public view returns (uint){
+        return logic.getNumber();
+    }
+}
+
+```
+
