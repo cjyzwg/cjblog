@@ -692,6 +692,7 @@ contract Proxy {
 ### 多态继承
 
 当有覆写父类相同的方法时候，父类加virtual 子类加overwrite
+
 ```ts
 
 // SPDX-License-Identifier: GPL-3.0
@@ -733,3 +734,121 @@ contract BC is B,C {
 }
 
 ```
+### selfDestruct 销毁智能合约
+
+下面不建议用selfdestruct ，考虑销毁合同的替代方法，例如将资金转移到指定地址，而不是完全销毁合同
+
+### assembly 内联汇编
+
+内联汇编指的是掺杂汇编语言，类似调用shell命令
+
+### 去中心化交易所实现
+这块待添加
+
+### 合约、时间与账号“加锁”
+
+转账前加锁 不让转账，超过时间才能转账
+```ts
+
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.2;
+import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
+import "@openzeppelin/contracts//access/Ownable.sol";
+
+contract ThinkingChain is ERC20,Ownable {
+
+    bool public isLocked = false;
+    /**
+    1 == 1 seconds
+    1 minutes == 60 seconds
+    1 hours == 60 minutes
+    1 days == 24 hours
+    1 weeks == 7 days
+    */
+    uint public timeLock = block.timestamp + 1 minutes;
+    constructor() ERC20("ThinkingChain","T"){
+        _mint(msg.sender, 100000 * 10 ** decimals());
+    }
+    function transfer(address _to,uint256 _amount) public override returns (bool) {
+        require(block.timestamp%3EtimeLock,"Its not time yet");
+        require(isLocked == false,"Transfer was locked");
+        return  super.transfer(_to,_amount);
+    }
+    function setLock() public onlyOwner returns (bool) {
+        isLocked = true;
+        return true;
+    }
+}
+
+```
+
+### encode方法差异
+
+尽量多采取A和D合约的方式，调用其他合约的方法
+
+```ts
+
+// SPDX-License-Identifier: GPL-3.0
+pragma solidity >=0.7.0 <0.9.0;
+
+
+contract A {
+    function calllBFunction(address _address,uint256 _num,string memory _message) public returns (bool) {
+        (bool success,) = _address.call(
+            abi.encodeWithSignature("bFunction(uint256,string)",_num,_message)
+        );
+        return success;
+    }
+}
+
+contract C {
+    function calllBFunction(address _address,uint256 _num,string memory _message) public returns (bool) {
+        bytes4 sig = bytes4(keccak256("bFunction(uint256,string)"));
+        bytes memory _bNum = abi.encode(_num);
+        bytes memory _bMessage = abi.encode(_message);
+        (bool success,) = _address.call(
+            abi.encodePacked(sig,_bNum,_bMessage)
+        );
+    
+        return success;
+    }
+}
+
+contract D {
+    function calllBFunction(address _address,uint256 _num,string memory _message) public returns (bool) {
+        bytes4 sig = bytes4(keccak256("bFunction(uint256,string)"));
+        (bool success,) = _address.call(
+            abi.encodeWithSelector(sig, _num,_message)
+        );
+        return success;
+    }
+}
+
+//最常用的方式
+contract E {
+
+function calllBFunction(address _address,uint256 _num,string memory _message) public returns (bool) {
+
+	B contractB = B(_address);
+	
+	contractB.bFunction(_num, _message);
+	
+	return true;
+	
+	}
+
+}
+
+contract B {
+    uint256 public num;
+    string public message;
+
+    function bFunction(uint256 _num,string memory _message) public returns(uint256,string memory) {
+        num = _num;
+        message = _message;
+        return (num,message);
+    }
+}
+
+```
+
