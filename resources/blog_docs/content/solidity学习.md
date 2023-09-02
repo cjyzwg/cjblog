@@ -852,3 +852,45 @@ contract B {
 
 ```
 
+### Call 和delegateCall的区别
+
+最大的区别就在于 call 调用B方法 ，获取num是存储在B地址下的，而delegatecall 获取的num是存储在A合约地址下
+
+delegatecall 可以用于升级A合约，假设A合约中的方法setnum 需要修改，一旦部署num值是不让修改的，这时候可以部署一个新合约B，在setNum方法里修改，这样调用B方法 ，但是num值改的是A地址的
+
+```ts
+
+// SPDX-License-Identifier: GPL-3.0
+pragma solidity ^0.8.15;
+contract A {
+    uint private num;
+    function setNum(uint _num) public {
+        num = _num + 1;
+    }
+    function getNum() public view returns(uint){
+        return num ;
+    }
+    function bSetNum(address _bAddress,uint _num) public {
+        B b = B(_bAddress);
+        b.setNum(_num);
+    }
+    function bSetNumCall(address _bAddress,uint _num) public {
+        (bool res,) = _bAddress.call(abi.encodeWithSignature("setNum(uint256)", _num));
+        if(!res) revert();
+    }
+    function bSetNumDeleGateCall(address _bAddress,uint _num) public {
+        (bool res,) = _bAddress.delegatecall(abi.encodeWithSignature("setNum(uint256)", _num));
+        if(!res) revert();
+    }
+}
+contract B {
+    uint private num;
+    function setNum(uint _num) public {
+        num = _num + 2;
+    }
+    function getNum() public view returns(uint){
+        return num ;
+    }
+}
+
+```
