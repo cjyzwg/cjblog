@@ -894,3 +894,61 @@ contract B {
 }
 
 ```
+
+### 管理员权限 Ownable
+
+使用openzippelin的方法 onlyOwner modifier修改器
+
+```ts
+
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.9;
+
+import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
+import "@openzeppelin/contracts/access/Ownable.sol";
+
+contract MyToken is ERC20, Ownable {
+    constructor() ERC20("ThinkingChain", "TKC") {
+        _mint(msg.sender, 100000 * 10 ** decimals());
+    }
+
+    function mint(address to, uint256 amount) public onlyOwner {
+        _mint(to, amount);
+    }
+}
+
+```
+
+### hardhat 教程
+
+[hardhat教程](https://medium.com/my-blockchain-development-daily-journey/%E5%AE%8C%E6%95%B4%E7%9A%84hardhat%E5%AF%A6%E8%B8%90%E6%95%99%E7%A8%8B-a9b005aa4c12)
+
+[官方教程](https://hardhat.org/tutorial)
+
+[官方教程2](https://hardhat.org/tutorial)
+
+
+### ERC20接口解释
+
+```go
+// SPDX-License-Identifier:MIT
+pragma solidity 0.8.17;
+interface IERC20 {
+    //发行的代币总量
+    function totalSupply() external view returns (uint256);
+    //某地址余额
+    function balanceOf(address account) external view returns (uint256);
+    //从当前账户对某个地址转amount的钱
+    function transfer(address account, uint256 amount) external returns (bool);
+    //授权某个账户可以用你的钱（用多少钱是指定的）
+    function approve(address spender, uint256 amount) external returns (bool);
+    //你授权的账户还可以有多少你授权的钱可以用
+    function allowance(address owner, address spender) external view returns (uint256);
+    //授权用户的转账方法，只针对授权用户使用
+    function transferFrom(address from,address to,uint256 amount) external returns (bool);
+    //转账时触发转账事件
+    event Transfer(address indexed from, address indexed to, uint256 value);
+    //授权时触发授权事件
+    event Approval(address indexed owner, address indexed spender, uint256 value);
+}
+
